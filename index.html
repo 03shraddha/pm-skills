@@ -4,31 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>pm skills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #FAFAF5;
-    --sidebar-bg: #F2F1EB;
-    --border: #E5E4DC;
-    --selected: #FFF9C4;
-    --selected-border: #F5C842;
-    --text: #1C1C1E;
-    --muted: #6E6E73;
-    --accent: #F5A623;
-    --code-bg: #EDECE6;
-    --mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
-    --sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', sans-serif;
+    --bg: #FFFFFF;
+    --surface: #F7F7F5;
+    --text: #1A1A1A;
+    --muted: #999999;
+    --accent: #000000;
+    --border: #E5E5E5;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: var(--sans);
-    background: var(--bg);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
     color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    background: var(--bg);
   }
 
   /* ── Header ── */
@@ -36,628 +32,1430 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 20px;
-    border-bottom: 1px solid var(--border);
-    background: var(--sidebar-bg);
-    flex-shrink: 0;
+    padding: 13px 32px;
+    border-bottom: 0.5px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 20;
   }
 
-  header h1 {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--text);
-  }
-
-  header a {
-    font-size: 12px;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.01em;
-  }
+  .logo { font-size: 13px; font-weight: 500; color: var(--text); }
+  header a { font-size: 12px; color: var(--muted); text-decoration: none; }
   header a:hover { color: var(--text); }
 
-  /* ── Main layout ── */
-  .layout {
+  /* ── Pill Nav ── */
+  .pill-nav {
     display: flex;
-    flex: 1;
-    overflow: hidden;
+    gap: 2px;
+    padding: 12px 32px;
+    border-bottom: 0.5px solid var(--border);
+    flex-wrap: wrap;
+    position: sticky;
+    top: 45px;
+    background: var(--bg);
+    z-index: 10;
   }
 
-  /* ── Sidebar ── */
-  .sidebar {
-    width: 220px;
-    flex-shrink: 0;
-    border-right: 1px solid var(--border);
-    background: var(--sidebar-bg);
-    overflow-y: auto;
-    padding: 8px 0;
-  }
-
-  .sidebar-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 8px 16px 6px;
-  }
-
-  .skill-item {
-    display: flex;
-    flex-direction: column;
-    padding: 9px 16px;
-    cursor: pointer;
-    border-left: 2px solid transparent;
-    transition: background 0.1s;
-  }
-
-  .skill-item:hover { background: rgba(0,0,0,0.04); }
-
-  .skill-item.active {
-    background: var(--selected);
-    border-left-color: var(--selected-border);
-  }
-
-  .skill-item .skill-name {
-    font-size: 13px;
+  .pill {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
     font-weight: 500;
-    color: var(--text);
-    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    padding: 5px 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: color 0.1s;
+    white-space: nowrap;
   }
 
-  .skill-item .skill-company {
-    font-size: 11px;
-    color: var(--muted);
-  }
+  .pill:hover { color: var(--text); }
+  .pill.active { background: var(--accent); color: #fff; }
 
   /* ── Content ── */
-  .content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 36px 48px;
-    max-width: 780px;
+  .content { max-width: 720px; padding: 44px 32px 80px; }
+
+  /* ── Skill header ── */
+  .skill-title {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 8px;
   }
 
-  .content-inner { max-width: 640px; }
+  .skill-tagline { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
 
-  .skill-title {
-    font-size: 22px;
+  /* ── Spec strip ── */
+  .spec-strip { border-top: 0.5px solid var(--border); margin-bottom: 32px; }
+
+  .spec-row {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 9px 0;
+    font-size: 13px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .spec-key {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    width: 26px;
+    flex-shrink: 0;
+  }
+
+  .spec-val { color: var(--text); }
+
+  /* ── Content Tabs ── */
+  .content-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 28px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .ct {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 9px 18px 9px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -0.5px;
+    transition: color 0.1s;
+  }
+
+  .ct:hover { color: var(--text); }
+  .ct.active { color: var(--text); border-bottom-color: #000; font-weight: 600; }
+
+  /* ── Markdown render styles ── */
+  .md-body { padding-top: 2px; }
+
+  .md-h1 {
+    font-size: 20px;
     font-weight: 600;
     letter-spacing: -0.02em;
-    margin-bottom: 4px;
-    line-height: 1.2;
+    margin: 0 0 22px;
+    color: var(--text);
   }
 
-  .skill-tagline {
-    font-size: 14px;
+  .md-h2 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 28px;
+    margin: 32px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid var(--border);
   }
 
-  .section-label {
+  .md-h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 20px 0 8px;
+  }
+
+  .md-p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .md-hr {
+    border: none;
+    border-top: 0.5px solid var(--border);
+    margin: 24px 0;
+  }
+
+  .md-bq {
+    border-left: 2px solid var(--border);
+    padding: 10px 16px;
+    margin: 0 0 20px;
+    background: var(--surface);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .md-bq p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+
+  .md-bq p:last-child { margin-bottom: 0; }
+
+  .md-ul, .md-ol {
+    padding-left: 18px;
+    margin-bottom: 14px;
+  }
+
+  .md-ul li, .md-ol li {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .md-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    background: var(--surface);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--text);
+  }
+
+  .md-pre {
+    background: var(--surface);
+    border-radius: 5px;
+    padding: 14px 16px;
+    margin: 4px 0 16px;
+    overflow-x: auto;
+    border: 0.5px solid var(--border);
+  }
+
+  .md-pre code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .md-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 10px 0 20px;
+  }
+
+  .md-table th {
     font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.07em;
+    color: var(--muted);
+    text-align: left;
+    padding: 0 14px 8px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .md-table td {
+    padding: 9px 14px 9px 0;
+    border-bottom: 0.5px solid var(--border);
+    font-size: 13px;
+    line-height: 1.45;
+    vertical-align: top;
+  }
+
+  .md-table tr:last-child td { border-bottom: none; }
+  .md-table tbody tr:hover td { background: #FAFAFA; }
+
+  /* ── Section label ── */
+  .label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--muted);
     margin-bottom: 10px;
   }
 
-  .io-row {
-    display: flex;
-    gap: 8px;
-    align-items: baseline;
-    margin-bottom: 6px;
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-  .io-label {
-    font-weight: 600;
-    color: var(--muted);
-    width: 30px;
-    flex-shrink: 0;
-    font-size: 12px;
-  }
-
-  .io-value { color: var(--text); }
-
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 24px 0;
-  }
-
-  /* Example block */
-  .example-header {
+  /* ── Example header ── */
+  .example-row {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 14px;
-  }
-
-  .example-tag {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--muted);
-  }
-
-  .company-badge {
-    font-size: 11px;
-    font-weight: 500;
-    background: var(--code-bg);
-    color: var(--text);
-    padding: 2px 8px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-  }
-
-  .input-block {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px 14px;
+    gap: 10px;
     margin-bottom: 16px;
   }
 
-  .input-block .block-label {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    margin-bottom: 6px;
+  .co-tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+    letter-spacing: 0.01em;
   }
 
-  .input-block p {
-    font-family: var(--mono);
+  /* ── Input block ── */
+  .input-block {
+    background: var(--surface);
+    border-radius: 5px;
+    padding: 14px 16px;
+    margin-bottom: 28px;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
-    line-height: 1.6;
+    line-height: 1.65;
     color: var(--text);
+    border: 0.5px solid var(--border);
   }
 
-  .output-block {
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
+  /* ── Output ── */
+  .output { margin-bottom: 32px; }
+  .output p { font-size: 14px; margin-bottom: 10px; color: var(--text); }
+  .output p:last-child { margin-bottom: 0; }
+  .output strong { font-weight: 500; }
 
-  .output-block .output-header {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    padding: 8px 14px;
-    border-bottom: 1px solid var(--border);
-    background: var(--code-bg);
-  }
+  /* ── Borderless table (for output) ── */
+  .dt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0 20px; }
 
-  .output-body {
-    padding: 14px;
-    font-size: 12.5px;
-    line-height: 1.7;
-    color: var(--text);
-  }
-
-  .output-body p { margin-bottom: 8px; }
-  .output-body p:last-child { margin-bottom: 0; }
-
-  .output-body strong { font-weight: 600; }
-
-  .output-body .tag {
-    display: inline-block;
-    font-size: 10px;
+  .dt th {
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 1px 6px;
-    border-radius: 3px;
-    margin-right: 4px;
-  }
-
-  .tag.quick-win { background: #D4EDDA; color: #1A6B2F; }
-  .tag.big-bet   { background: #FFF3CD; color: #7B5B00; }
-  .tag.cut       { background: #F8D7DA; color: #7B1C24; }
-  .tag.high      { background: #F8D7DA; color: #7B1C24; }
-  .tag.medium    { background: #FFF3CD; color: #7B5B00; }
-  .tag.low       { background: #E9ECEF; color: #495057; }
-
-  .output-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-    margin-top: 4px;
-  }
-
-  .output-table th {
+    letter-spacing: 0.08em;
+    color: var(--muted);
     text-align: left;
-    font-weight: 600;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--muted);
-    padding: 4px 8px 6px 0;
-    border-bottom: 1px solid var(--border);
+    padding: 0 16px 8px 0;
+    border-bottom: 0.5px solid var(--border);
   }
 
-  .output-table td {
-    padding: 5px 8px 5px 0;
-    vertical-align: top;
-    border-bottom: 1px solid var(--border);
+  .dt td {
+    padding: 0 16px 0 0;
+    height: 48px;
+    vertical-align: middle;
+    border-bottom: 0.5px solid var(--border);
     line-height: 1.4;
   }
 
-  .output-table tr:last-child td { border-bottom: none; }
+  .dt tr:last-child td { border-bottom: none; }
+  .dt tbody tr:hover td { background: #FAFAFA; }
 
-  /* Actions */
+  /* ── Tags ── */
+  .t { display:inline-block; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; padding:2px 6px; border-radius:3px; }
+  .t-win { background:#E8F5E9; color:#2E7D32; }
+  .t-bet { background:#FFF8E1; color:#E65100; }
+  .t-cut { background:#FFEBEE; color:#C62828; }
+  .t-hi  { background:#FFEBEE; color:#C62828; }
+  .t-mid { background:#FFF8E1; color:#E65100; }
+  .t-lo  { background:#F3F4F6; color:#6B7280; }
+
+  /* ── Divider ── */
+  .div { border:none; border-top: 0.5px solid var(--border); margin: 28px 0; }
+
+  /* ── Script questions (customer research output) ── */
+  .q-block { padding: 11px 0; border-bottom: 0.5px solid var(--border); }
+  .q-block:last-child { border-bottom: none; }
+  .q-phase { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 4px; }
+  .q-text { font-size: 13px; line-height: 1.55; color: var(--text); }
+  .q-note { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+  /* ── Actions ── */
   .actions {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-top: 4px;
+    gap: 16px;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 0.5px solid var(--border);
   }
 
   .btn-copy {
-    font-family: var(--sans);
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     font-weight: 500;
     color: var(--text);
-    background: var(--code-bg);
-    border: 1px solid var(--border);
+    background: var(--surface);
+    border: 0.5px solid var(--border);
     border-radius: 5px;
-    padding: 6px 12px;
+    padding: 6px 14px;
     cursor: pointer;
-    transition: background 0.1s;
   }
 
   .btn-copy:hover { background: var(--border); }
-  .btn-copy.copied { color: #1A6B2F; border-color: #A8D5B5; background: #D4EDDA; }
+  .btn-copy.copied { color: #2E7D32; background: #E8F5E9; border-color: #A5D6A7; }
 
-  .link-skill {
-    font-size: 12px;
-    color: var(--muted);
-    text-decoration: none;
-  }
-  .link-skill:hover { color: var(--text); text-decoration: underline; }
+  .lnk { font-size: 12px; color: var(--muted); text-decoration: none; }
+  .lnk:hover { color: var(--text); }
 
-  /* Mobile */
-  @media (max-width: 640px) {
-    body { overflow: auto; }
-    .layout { flex-direction: column; overflow: visible; }
-    .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border); display: flex; flex-wrap: wrap; padding: 6px; gap: 4px; }
-    .sidebar-label { display: none; }
-    .skill-item { flex-direction: row; gap: 6px; align-items: center; border-left: none; border-radius: 5px; padding: 6px 10px; }
-    .skill-item.active { border-left: none; border: 1px solid var(--selected-border); }
-    .skill-item .skill-company { display: none; }
-    .content { padding: 24px 20px; overflow: visible; }
+  @media (max-width: 600px) {
+    header, .pill-nav, .content { padding-left: 16px; padding-right: 16px; }
+    .pill-nav { top: 43px; }
+    .skill-title { font-size: 22px; }
+    .ct { padding-right: 12px; }
   }
 </style>
 </head>
 <body>
 
+<!-- SKILL.md bodies (frontmatter stripped) -->
+<script type="text/markdown" id="md-competitor">
+# Competitor Analysis
+
+## Purpose
+
+Conduct a comprehensive competitive analysis to understand the landscape, identify 5 direct competitors, and uncover differentiation opportunities. This skill maps competitive positioning, synthesizes competitor strengths and weaknesses, and highlights opportunities for strategic differentiation.
+
+## Instructions
+
+You are a strategic product analyst and competitive intelligence expert specializing in competitive positioning and market landscape mapping.
+
+## Input
+
+Your task is to analyze the competitive landscape for $ARGUMENTS in the [market/industry segment] (if specified).
+
+Conduct web research to identify direct competitors. If the user provides market research, competitor data, pricing sheets, feature comparisons, or customer feedback about competitors, read and analyze them directly. Synthesize data into a comprehensive competitive view.
+
+## Analysis Steps (Think Step by Step)
+
+1. **Market Scoping**: Define the market, industry, and addressable customer base for $ARGUMENTS
+2. **Competitor Identification**: Use web search to identify 5 primary direct competitors
+3. **Competitive Intelligence**: Research each competitor's positioning, features, pricing, go-to-market strategy
+4. **Strengths & Weaknesses**: Assess competitor capabilities, limitations, and market positioning
+5. **Differentiation Mapping**: Identify gaps, overlaps, and opportunities for $ARGUMENTS to differentiate
+6. **Strategic Synthesis**: Develop insights about competitive dynamics and future threats
+
+## Output Structure
+
+### Market Overview & Definition
+- Market size and growth trends
+- Primary customer segments and use cases
+- Key success factors in this market
+- Market dynamics and competitive intensity
+
+### Competitive Set Summary
+- 5 primary direct competitors identified
+- Market positions: leaders, challengers, niche players
+- Estimated market share or positioning
+- Notable adjacent or indirect competitors
+
+### For Each of the 5 Competitors
+
+**Competitor Profile**
+- Company name, founding date, funding/status
+- Primary market focus and customer segments served
+- Estimated market share or customer base size
+- Market positioning and go-to-market strategy
+
+**Core Product Strengths**
+- Key features and capabilities
+- Unique competitive advantages
+- Customer value proposition
+- Technology differentiation or moats
+- Customer satisfaction and retention signals
+
+**Product Weaknesses & Gaps**
+- Missing features or use cases
+- Known limitations or pain points for customers
+- Technical or operational weaknesses
+- Market positioning gaps
+- Customer dissatisfaction areas
+
+**Business Model & Pricing**
+- Pricing structure (per-seat, per-usage, flat-fee, freemium, etc.)
+- Price point(s) in market
+- Go-to-market channels and sales motion
+- Revenue model and growth stage
+
+**Competitive Threats & Advantages**
+- How this competitor threatens $ARGUMENTS
+- Existing customer base and switching costs
+- Strategic partnerships or ecosystems
+- Recent product updates or strategic moves
+
+### Differentiation Opportunities for $ARGUMENTS
+- Unmet customer needs across competitive set
+- Feature/pricing/UX opportunities to stand out
+- Target segments underserved by competitors
+- Jobs-to-be-done not effectively solved by competitors
+- Channel or go-to-market approaches not yet deployed
+- Potential partnerships or integrations competitors lack
+
+### Competitive Positioning Recommendation
+- Recommended competitive positioning for $ARGUMENTS
+- Key differentiators to emphasize
+- Segments or use cases to target or avoid
+- Competitive threats to monitor
+- 12-18 month competitive risks and opportunities
+
+## Best Practices
+
+- Research current competitor websites, pricing pages, and customer reviews
+- Use web search to identify product launches, funding, executive moves
+- Distinguish between direct competitors and adjacent alternatives
+- Validate competitive insights across multiple sources
+- Identify both obvious and subtle differentiation opportunities
+- Consider customer pain points not yet addressed in market
+- Look for emerging competitors or new market entrants
+- Flag competitors gaining traction or gaining market share
+- Consider long-term competitive dynamics and market shifts
+</script>
+
+<script type="text/markdown" id="md-brainstorm">
+# PM Brainstorm
+
+> **What it does:** Generates diverse product ideas or experiment designs using multi-perspective ideation and lean startup thinking.
+> **Input:** A product name or concept, plus mode (ideas or experiments) and stage (existing or new product).
+> **Output:** A structured list of ideas or experiments with rationale, ranked by impact/effort, plus one recommended next step.
+
+---
+
+## Frameworks Used
+
+This skill draws on:
+- **Jobs-to-be-Done** (Christensen) — generate ideas by asking "what job is the customer hiring this product to do?" across functional, emotional, and social dimensions
+- **Lean Startup** (Eric Ries) — design the smallest possible experiment that tests a leap-of-faith assumption
+- **Working Backwards** (Amazon) — before brainstorming solutions, write the press release for the finished product to clarify the customer need
+- **Continuous Discovery Habits** (Teresa Torres) — treat brainstorming as opportunity-finding first, solution-finding second
+
+In 2026, AI PMs use AI to synthesize customer signals (support tickets, reviews, interviews) before brainstorming, so ideas are grounded in real unmet needs rather than internal intuition.
+
+---
+
+## Input
+
+$ARGUMENTS should specify:
+- **What**: product name or concept
+- **Mode**: ideas (brainstorm features/directions) or experiments (design tests for a specific idea)
+- **Stage**: existing product or new product
+
+If mode is not specified, default to ideas. Infer stage from context.
+
+---
+
+## Brainstorming Ideas
+
+### Existing Product
+Before generating ideas, identify the job the product is currently hired to do. Then generate ideas from three lenses:
+
+**PM lens** — Unmet jobs-to-be-done, metrics to move, adjacent use cases, underserved segments
+**Designer lens** — UX friction, emotional job failures, missing delight moments, broken flows
+**Engineer lens** — Underutilized technical capabilities, high-value low-cost builds, API opportunities
+
+Output: 5-7 ideas per lens with one-line rationale. Synthesize: top 5 ranked by impact/effort, with the reasoning.
+
+### New Product
+Use early discovery framing — avoid over-specifying solutions. For each direction:
+- Target user and their core job-to-be-done (functional + emotional + social)
+- 5-7 distinct product directions (not just feature variations)
+- For each: the core value prop, the riskiest assumption, and the minimum version to test
+- Apply Working Backwards: draft a one-sentence press release for each direction — if it's hard to write, the idea probably won't work
+
+---
+
+## Designing Experiments
+
+### Existing Product
+Validate a specific feature idea before building. Apply Lean Startup thinking:
+- State the hypothesis: "If we build X, we expect Y, because Z"
+- Identify the leap-of-faith assumption (what must be true for this to work?)
+- Design 3 experiments: quantitative signal, qualitative signal, fake-door or concierge test
+- Define success metrics and timeline for each
+- Recommend the cheapest test that could invalidate the riskiest assumption
+
+### New Product (Pretotypes)
+- Identify the leap-of-faith assumption (demand, behavior, or willingness-to-pay)
+- Design the smallest possible test: landing page, wizard-of-oz, paper prototype, smoke test
+- In 2026: use AI-assisted prototyping (vibe coding with tools like Claude Code) to generate working HTML prototypes in minutes instead of hours
+- Define what "validated" looks like before running the test
+- Suggest channels to recruit participants
+
+---
+
+## Output Format
+
+1. Brief restatement of the problem or opportunity
+2. Ideas or experiments (structured per mode above)
+3. Recommended next step — one specific action to take this week
+</script>
+
+<script type="text/markdown" id="md-assumptions">
+# PM Assumption Mapping
+
+> **What it does:** Surfaces and prioritizes the assumptions that could kill a product idea before any code is written.
+> **Input:** A feature idea or product concept, plus whether it is for an existing or new product.
+> **Output:** A full assumption map by category, a prioritized top 5-7 by Impact x Evidence, and one recommended experiment per priority assumption.
+
+---
+
+## Frameworks Used
+
+- **Inspired** (Marty Cagan) — the VUVF model: Value, Usability, Viability, Feasibility risk categories
+- **Jobs-to-be-Done / Competing Against Luck** (Christensen) — surface assumptions across functional, emotional, and social job dimensions
+- **Lean Startup** (Eric Ries) — leap-of-faith assumptions: identify what must be true for the business to work, then test the riskiest one first
+- **Continuous Discovery Habits** (Teresa Torres) — assumptions are branches on the Opportunity Solution Tree; test before building
+
+In 2026, AI PMs use AI to cross-reference assumptions against customer review data, support tickets, and behavioral analytics before scoring — reducing gut-feel bias in the prioritization.
+
+---
+
+## Input
+
+$ARGUMENTS should specify:
+- The feature idea or product concept to stress-test
+- Whether it is for an **existing product** or a **new product**
+
+---
+
+## Identifying Assumptions
+
+### Existing Product
+Map assumptions across the VUVF framework (Marty Cagan, Inspired):
+
+| Category | Question to ask |
+|---|---|
+| **Value** | Do users actually want this? Will it solve a real problem in a way they care about? |
+| **Usability** | Can users understand and use it without friction or support? |
+| **Viability** | Does this make business sense? Will the unit economics work? |
+| **Feasibility** | Can the team build this with available resources, data, and tech stack? |
+
+Generate 4-6 assumptions per category. Write each as a falsifiable statement: "We believe that [assumption]."
+
+### New Product
+Map assumptions across 8 risk categories:
+
+1. **Desirability** — Do enough people have this problem and care about solving it?
+2. **Value** — Does our solution solve it better than current alternatives (including doing nothing)?
+3. **Usability** — Will people understand how to use it without hand-holding?
+4. **Feasibility** — Can we build it with the team and tech we have?
+5. **Viability** — Can we build a sustainable business model around it?
+6. **Go-to-Market** — Can we reach, acquire, and retain the target customer at viable cost?
+7. **Strategy** — Can we defend this position over time? Is there a moat?
+8. **Team** — Do we have the capabilities, focus, and resources to execute?
+
+Generate 3-5 assumptions per category. Apply Lean Startup thinking: identify the leap-of-faith assumption for each — the one assumption that, if wrong, kills the entire idea.
+
+---
+
+## Prioritizing Assumptions
+
+Score each assumption on two axes:
+
+- **Impact** (1-5): If this assumption is wrong, how badly does it break the idea?
+- **Evidence** (1-5): How much existing evidence supports it being true? (1 = none, 5 = strong)
+
+**Priority = High Impact + Low Evidence.** These are the assumptions to test first — high stakes, low confidence.
+
+Highlight the top 5-7. Flag any that are both high-impact and have conflicting evidence — these need qualitative research, not just A/B tests.
+
+---
+
+## Output Format
+
+1. Full assumption map by category in table format
+2. Top 5-7 prioritized assumptions with Impact and Evidence scores
+3. For each priority assumption: one experiment to test it (type, method, success criteria)
+4. Recommended discovery sprint focus — which assumption to tackle first and why
+5. Leap-of-faith call: the single assumption that, if wrong, invalidates the entire initiative
+</script>
+
+<script type="text/markdown" id="md-features">
+# PM Feature Prioritization
+
+> **What it does:** Turns a messy list of feature requests or backlog items into a scored, defensible prioritization recommendation.
+> **Input:** A list of feature requests or backlog items, plus optional strategic goals/OKRs and team capacity.
+> **Output:** Themed backlog with RICE scores, Quick Wins / Big Bets segmentation, top 3 build recommendations, and an explicit "what not to build" list.
+
+---
+
+## Frameworks Used
+
+- **RICE Scoring** (Intercom) — Reach x Impact x Confidence / Effort: the standard for quantitative, defensible prioritization
+- **ICE Scoring** (Sean Ellis) — faster alternative for rapid triage of many small items when precision is less critical
+- **Kano Model** (Noriaki Kano) — categorize features as Must-Haves (ship now), Performance (improve over time), or Delighters (differentiation); what delights today becomes table stakes tomorrow
+- **Shape Up** (Basecamp) — treat prioritization as a betting decision with a fixed appetite, not a backlog to clear
+- **Jobs-to-be-Done** — group requests by the underlying customer job, not the surface feature request
+
+In 2026, AI PMs use AI to pre-cluster and pre-score feature requests automatically, then review and debate the output — shifting the PM's role from data entry to strategic judgment.
+
+---
+
+## Input
+
+$ARGUMENTS should provide:
+- A list of feature requests or backlog items (paste directly or describe them)
+- Optional: strategic goals or OKRs to align against
+- Optional: team size or capacity constraints
+
+---
+
+## Analysis Steps
+
+### 1. Theme Grouping
+Cluster all requests into 3-6 themes using JTBD framing. Name each theme by the customer job it addresses, not the feature:
+- "Faster onboarding" not "Onboarding redesign"
+- "Reduce churn from power users" not "Advanced features"
+
+Flag requests that don't map to any strategic goal — these are candidates to cut.
+
+### 2. Kano Classification
+Before scoring, classify each item:
+- **Must-Have** — customers are angry if absent; ship in next sprint
+- **Performance** — satisfaction scales with quality; invest proportionally
+- **Delighter** — unexpected, creates competitive differentiation; these are your bets
+
+Must-Haves have no upside from over-engineering. Delighters are where you win.
+
+### 3. RICE Scoring
+Score every feature on four dimensions (1-5 or estimated numbers):
+
+| Dimension | What to assess |
+|---|---|
+| **Reach** | How many users affected per month? |
+| **Impact** | How much does this move the needle? (0.25 / 0.5 / 1 / 2 / 3) |
+| **Confidence** | How certain are the estimates? (low = 50%, medium = 80%, high = 100%) |
+| **Effort** | Person-months to ship (lower = better) |
+
+**RICE Score = (Reach x Impact x Confidence) / Effort**
+
+Use ICE (Impact x Confidence x Ease, all 1-10) for quick triage of small items where RICE would be overkill.
+
+### 4. Segmentation Matrix
+Classify using impact vs. effort:
+- **Quick Wins** — high impact, low effort: ship now
+- **Big Bets** — high impact, high effort: plan carefully, consider phasing
+- **Fill-ins** — low impact, low effort: ship when there's slack capacity
+- **Deprioritize** — low impact, high effort: cut or defer indefinitely
+
+Apply Shape Up thinking to Big Bets: set a fixed appetite (e.g., 6 weeks max) and scope the solution to fit — don't let it expand.
+
+### 5. Risk Flags
+Surface any items with:
+- High demand but low strategic alignment (stakeholder pressure vs. actual value)
+- High effort with unvalidated assumptions (build trap risk — needs discovery first)
+- Dependencies that unlock multiple other items (do these first)
+
+---
+
+## Output Format
+
+1. Theme summary with request count per theme
+2. Kano classification for all items
+3. Prioritized backlog sorted by RICE score (table format)
+4. Segmentation matrix: Quick Wins / Big Bets / Fill-ins / Deprioritize
+5. Top 3 build recommendations with rationale
+6. Explicit "do not build" list with reasons — critical for stakeholder alignment
+</script>
+
+<script type="text/markdown" id="md-research">
+# PM Customer Research
+
+> **What it does:** Prepares structured customer interview scripts or synthesizes completed transcripts into PM-ready insight summaries.
+> **Input:** Mode (script or summarize), plus a product area/hypothesis (for scripts) or a transcript (for synthesis).
+> **Output:** A complete interview guide with JTBD questions (script mode), or a structured insight summary with pain points, opportunity signals, and action items (summarize mode).
+
+---
+
+## Frameworks Used
+
+- **Jobs-to-be-Done** (Christensen / Competing Against Luck) — probe for functional, emotional, and social job dimensions; the best interviews reveal why, not just what
+- **Continuous Discovery Habits** (Teresa Torres) — weekly 30-minute interviews with 2-3 customers is sustainable; treat every interview as opportunity-finding, not solution validation
+- **Working Backwards** (Amazon) — after synthesis, ask: "Could we write a press release for a product that solves what we just heard?" If yes, there's a real opportunity
+- **Opportunity-Solution Tree** (Torres) — map interview findings directly to opportunity branches on the tree; insights without a home in the tree are noise
+
+In 2026, AI PMs use AI to synthesize patterns across multiple transcripts simultaneously — surfacing the top 5 themes across 20 interviews in minutes. Use this skill for single-interview depth; use AI batch synthesis for cross-interview pattern detection.
+
+---
+
+## Input
+
+$ARGUMENTS should specify:
+- **Mode**: script (create an interview guide) or summarize (synthesize a transcript)
+- For script mode: the product area, hypothesis, or specific assumption to explore
+- For summarize mode: paste the transcript or describe the key topics covered
+
+If mode is unclear, infer from whether a transcript is provided.
+
+---
+
+## Script Mode
+
+Create a structured 45-60 minute interview guide:
+
+### Warm-up (5 min)
+- Role, context, and day-to-day background
+- "Walk me through a typical [relevant work day / task]"
+- Goal: establish rapport; do not mention the product or solution yet
+
+### Current Behavior Exploration (15 min)
+- "Walk me through the last time you had to [relevant task]..."
+- "What does your current process look like from start to finish?"
+- "What tools, workarounds, or hacks are you using?"
+- Probe: frequency, frustration level, cost of the workaround, what triggers the task
+
+### JTBD Deep Dive (20 min)
+Jobs-to-be-done questions surface the underlying motivation, not the surface request:
+- "What were you ultimately trying to accomplish when you [did X]?"
+- "How did it make you feel when [pain point] happened?"
+- "How do others on your team / your manager perceive this process?"
+- "If this problem disappeared tomorrow, what would change for you?"
+- "What would the perfect version of this look like?"
+
+Probe all three job dimensions: functional (task), emotional (feeling), social (perception).
+
+### Solution Probing (10 min — only if validating a specific hypothesis)
+- Describe the concept or show a prototype — do not lead with a demo
+- "Does this solve the problem you described? Why or why not?"
+- "What's missing? What would you remove?"
+- Listen for hesitation as much as enthusiasm — both are signal
+
+### Wrap-up (5 min)
+- "Is there anything I didn't ask that you think I should know?"
+- "Who else on your team or network deals with this problem?"
+- Ask for referrals to 2-3 other potential participants
+
+---
+
+## Summarize Mode
+
+Analyze the transcript and produce a structured summary:
+
+### Participant Snapshot
+- Role, company type, team size, how they currently solve the problem
+
+### Jobs-to-be-Done
+- **Primary job**: what they were fundamentally trying to accomplish
+- **Emotional job**: how they want to feel while doing it
+- **Social job**: how they want to be perceived by others
+
+### Satisfaction Signals
+- What is working well in their current approach
+- Moments of delight or surprise mentioned in the session
+
+### Pain Points and Friction
+- Specific frustrations, quoted directly where possible
+- Workarounds they have invented — strong signal of unmet need
+- Frequency and severity rating for each pain point (1-5)
+
+### Opportunity Signals
+- Unmet needs no current solution addresses
+- "If only..." or "I wish..." statements
+- Behaviors that suggest latent demand
+
+### Working Backwards Check
+- Based on this interview, could you write a press release for a product that solves what was described?
+- If yes: what is the headline and the core customer benefit?
+
+### Action Items
+- Hypotheses confirmed, challenged, or newly surfaced
+- Features or product directions to explore
+- Follow-up questions for the next interview
+- Suggested additions to the Opportunity Solution Tree
+</script>
+
+<script type="text/markdown" id="md-metrics">
+# PM Product Metrics
+
+> **What it does:** Designs a product metrics framework or builds an Opportunity Solution Tree to connect a team's work to a desired outcome.
+> **Input:** Mode (dashboard or ost), plus the product, product area, or outcome to focus on.
+> **Output:** A layered metrics system with North Star, input, and health metrics (dashboard mode), or a full OST with opportunities, solutions, and prioritized experiments (ost mode).
+
+---
+
+## Frameworks Used
+
+- **North Star Framework** — one metric that captures the core value delivered; all team OKRs should show a causal link to it
+- **HEART Framework** (Google) — Happiness, Engagement, Adoption, Retention, Task Success; use for UX-centric products where revenue metrics alone miss the picture
+- **Opportunity-Solution Tree** (Teresa Torres) — maps desired outcome to customer opportunities to solutions to experiments; prevents building solutions without connected customer needs
+- **Continuous Discovery Habits** (Torres) — OSTs are living documents updated weekly as customer interviews surface new opportunities
+- **OKR Alignment** — North Star is persistent (changes every 2-5 years); OKRs implement strategy quarterly; both must coexist without conflicting
+
+In 2026, AI PMs use AI agents to continuously monitor whether actions are moving the North Star — replacing manual weekly metric reviews with real-time anomaly detection and automated insight surfacing.
+
+---
+
+## Input
+
+$ARGUMENTS should specify:
+- **Mode**: dashboard (metrics framework) or ost (opportunity solution tree)
+- The product, product area, or specific outcome to focus on
+
+If mode is unclear, infer from context: if an outcome or goal is described, default to OST; if measurement or tracking is the goal, default to dashboard.
+
+---
+
+## Dashboard Mode
+
+Design a layered metrics system:
+
+### North Star Metric
+The single metric that best captures the value delivered to customers and predicts long-term business health.
+
+A strong North Star is:
+- **Customer-centric**: reflects value to the user, not just to the business
+- **Leading indicator**: predicts future retention and growth
+- **Actionable**: teams can directly influence it
+- **Persistent**: rarely changes (Spotify: hours listened; Slack: messages sent; Airbnb: nights booked)
+
+Include: definition, current baseline (if known), target, and why this metric over alternatives.
+
+### Input Metrics (3-5)
+Leading indicators that drive the North Star — the levers teams can pull.
+
+### Health Metrics (3-5)
+Guardrail metrics — things that must not degrade while optimizing for the North Star.
+
+Apply HEART where relevant: Happiness (NPS, CSAT), Engagement (DAU/MAU), Adoption (new user activation), Retention (30/60/90-day), Task Success (completion rate, error rate).
+
+Define alert thresholds for each: "If [metric] drops below [X], investigate before shipping."
+
+---
+
+## OST Mode
+
+Build an Opportunity Solution Tree to connect a desired outcome to concrete experiments:
+
+### Desired Outcome
+State the product outcome the team owns — an impact, not an output:
+- Good: "Increase weekly active usage among free-tier users by 20%"
+- Bad: "Ship the new onboarding flow"
+
+### Opportunities (4-6)
+Each opportunity is an unmet customer need, pain point, or desire surfaced through research. Rate each on evidence strength, frequency, and severity (1-5).
+
+### Solutions (2-3 per top opportunity)
+Generate distinct solutions — avoid converging on one answer. For each:
+- One-line description of the approach
+- Riskiest assumption behind it
+- Effort estimate (S/M/L)
+
+### Experiments (1-2 per solution)
+Design the smallest test that validates or invalidates the riskiest assumption:
+- Hypothesis, test type, success metric, timeline
+- Prefer tests that could prove you wrong cheaply
+
+Recommend which branch to pursue first and why — based on opportunity evidence strength x solution confidence x experiment cost.
+</script>
+
 <header>
-  <h1>pm skills</h1>
+  <span class="logo">pm skills</span>
   <a href="https://github.com/03shraddha/pm-skills" target="_blank">github →</a>
 </header>
 
-<div class="layout">
+<nav class="pill-nav" id="pillnav">
+  <button class="pill active" data-skill="competitor" onclick="selectSkill(this)">Competitor Analysis</button>
+  <button class="pill" data-skill="brainstorm" onclick="selectSkill(this)">PM Brainstorm</button>
+  <button class="pill" data-skill="assumptions" onclick="selectSkill(this)">Assumption Mapping</button>
+  <button class="pill" data-skill="features" onclick="selectSkill(this)">Feature Prioritization</button>
+  <button class="pill" data-skill="research" onclick="selectSkill(this)">Customer Research</button>
+  <button class="pill" data-skill="metrics" onclick="selectSkill(this)">Product Metrics</button>
+</nav>
 
-  <!-- Sidebar -->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar-label">6 skills</div>
-    <div class="skill-item active" data-skill="competitor" onclick="select(this)">
-      <span class="skill-name">competitor analysis</span>
-      <span class="skill-company">Sarvam AI</span>
-    </div>
-    <div class="skill-item" data-skill="brainstorm" onclick="select(this)">
-      <span class="skill-name">pm brainstorm</span>
-      <span class="skill-company">Ringg AI</span>
-    </div>
-    <div class="skill-item" data-skill="assumptions" onclick="select(this)">
-      <span class="skill-name">assumption mapping</span>
-      <span class="skill-company">Emergent</span>
-    </div>
-    <div class="skill-item" data-skill="features" onclick="select(this)">
-      <span class="skill-name">feature prioritization</span>
-      <span class="skill-company">Portkey</span>
-    </div>
-    <div class="skill-item" data-skill="research" onclick="select(this)">
-      <span class="skill-name">customer research</span>
-      <span class="skill-company">Arintra</span>
-    </div>
-    <div class="skill-item" data-skill="metrics" onclick="select(this)">
-      <span class="skill-name">product metrics</span>
-      <span class="skill-company">WizCommerce</span>
-    </div>
-  </nav>
-
-  <!-- Content -->
-  <main class="content" id="content"></main>
-
-</div>
+<main class="content" id="content"></main>
 
 <script>
+const GH = "https://github.com/03shraddha/pm-skills/blob/main/";
+
+// Load SKILL.md bodies from embedded script tags
+const skillmd = {
+  competitor: document.getElementById('md-competitor').textContent.trim(),
+  brainstorm: document.getElementById('md-brainstorm').textContent.trim(),
+  assumptions: document.getElementById('md-assumptions').textContent.trim(),
+  features:    document.getElementById('md-features').textContent.trim(),
+  research:    document.getElementById('md-research').textContent.trim(),
+  metrics:     document.getElementById('md-metrics').textContent.trim()
+};
+
 const skills = {
 
-  competitor: {
-    name: "competitor analysis",
-    tagline: "maps 5 direct competitors — moats, gaps, pricing, and positioning — then delivers a north star differentiation thesis with battlecard-ready output.",
-    io: {
-      in: "product or company name + optional market segment",
-      out: "competitor profiles, moat analysis, differentiation opportunities, battlecard-ready positioning"
-    },
-    company: "Sarvam AI",
-    prompt: "/competitor-analysis Sarvam AI, Indian sovereign language model market",
-    skillFile: "competitor-analysis/SKILL.md",
-    inputText: `Sarvam AI — Indian sovereign language model company.\nBuilds voice + text AI for 11 Indian languages.\nProducts: Sarvam APIs (TTS, STT, translation), Indus chat app.\nTarget: enterprises building India-first AI products.`,
-    output: `<p><strong>Market:</strong> Indian sovereign AI — voice + language models for regional markets. Growing rapidly as enterprises face DPDP compliance pressure and demand for culturally relevant AI.</p>
-<p><strong>Competitors identified:</strong></p>
-<table class="output-table">
-  <thead><tr><th>Company</th><th>Position</th><th>Key moat</th></tr></thead>
+competitor: {
+  name: "competitor analysis",
+  tagline: "maps 5 direct competitors — moats, gaps, pricing, and positioning — then delivers a north star differentiation thesis with battlecard-ready output.",
+  io: { in: "product or company name + optional market segment", out: "competitor profiles, moat analysis, differentiation opportunities, battlecard-ready positioning" },
+  company: "Sarvam AI",
+  prompt: "/competitor-analysis Sarvam AI, Indian sovereign language model market",
+  file: "competitor-analysis/SKILL.md",
+  input: `Sarvam AI — Indian sovereign language model company.
+Builds voice + text AI for 11 Indian languages.
+Products: Sarvam APIs (TTS, STT, translation), Indus chat app.
+Target: enterprises building India-first AI products.`,
+  output: `
+<p><strong>Market.</strong> Indian sovereign AI — voice + language models for regional markets. India's AI market reached $1.6–22.8B in 2025 with 26.5% CAGR projected through 2034. Enterprises face DPDP compliance pressure and demand for culturally sovereign AI. Key success factors: multimodal coverage across 22 scheduled languages, on-premise deployment options, BFSI and govt sector relationships.</p>
+<table class="dt">
+  <thead><tr><th>Company</th><th>Position</th><th>Key moat</th><th>Weakness</th></tr></thead>
   <tbody>
-    <tr><td><strong>Krutrim (Ola)</strong></td><td>Consumer + enterprise</td><td>Ola's distribution, infra investment</td></tr>
-    <tr><td><strong>CoRover.ai</strong></td><td>Govt + BFSI</td><td>Deep govt relationships, BharatGPT</td></tr>
-    <tr><td><strong>Bhashini (NPCI/Govt)</strong></td><td>Infra layer</td><td>State-backed, free to use</td></tr>
-    <tr><td><strong>Gnani.ai</strong></td><td>Voice AI, enterprise</td><td>Strong in BFSI call centres</td></tr>
-    <tr><td><strong>OpenAI (India push)</strong></td><td>Global incumbent</td><td>Model quality, developer mindshare</td></tr>
+    <tr><td><strong>Krutrim (Ola)</strong></td><td>Consumer + enterprise</td><td>Ola distribution, infra investment, consumer reach</td><td>No clear enterprise API story; consumer-first brand</td></tr>
+    <tr><td><strong>CoRover.ai</strong></td><td>Govt + BFSI</td><td>Deep govt relationships, BharatGPT positioning</td><td>Narrow use case, weak developer ecosystem</td></tr>
+    <tr><td><strong>Bhashini (NPCI/Govt)</strong></td><td>Infra layer</td><td>State-backed, free to use, mandated adoption</td><td>Not a commercial product; no SLAs, no support</td></tr>
+    <tr><td><strong>Gnani.ai</strong></td><td>Voice AI, enterprise</td><td>BFSI call centre deployments, proven ROI</td><td>Single-modality (voice only), limited language depth</td></tr>
+    <tr><td><strong>OpenAI (India push)</strong></td><td>Global incumbent</td><td>Model quality, developer mindshare, GPT-4o multilingual</td><td>No data residency, no DPDP compliance, high cost per token</td></tr>
   </tbody>
 </table>
-<p><strong>Differentiation opportunity:</strong> No player credibly owns enterprise voice APIs with DPDP compliance + on-premise deployment. Sarvam is best positioned to claim "sovereign AI infra" before hyperscalers localise.</p>
-<p><strong>North star thesis:</strong> Position as the only API-first sovereign AI that enterprises can deploy within India's data borders — not a chatbot company, an AI infrastructure company.</p>`
-  },
+<p><strong>Differentiation opportunity.</strong> No player credibly owns enterprise voice APIs with DPDP compliance + on-premise deployment. Sarvam is uniquely positioned to claim "sovereign AI infra" before hyperscalers localise. The gap: enterprises in BFSI, healthcare, and e-gov need a vendor who can sign data processing agreements under Indian law — none of the current players can do this at API quality.</p>
+<p><strong>North star thesis.</strong> Position as the only API-first sovereign AI that enterprises can deploy within India's data borders. Not a chatbot company — an AI infrastructure company. Own the "DPDP-compliant LLM API" narrative before AWS Bedrock or Azure localise their India regions.</p>
+<p><strong>12-month threats to monitor.</strong> AWS India region expansion (data residency parity); Google's Gemini regional fine-tunes; Krutrim pivoting to API-first; Bhashini mandating government procurement.</p>`
+},
 
-  brainstorm: {
-    name: "pm brainstorm",
-    tagline: "generates product ideas from PM, designer, and engineer perspectives — or designs lean experiments to test them. works for existing products and new concepts.",
-    io: {
-      in: "product name + mode (ideas or experiments) + stage (existing or new)",
-      out: "ranked idea list or experiment designs with hypothesis and success metrics"
-    },
-    company: "Ringg AI",
-    prompt: "/pm-brainstorm Ringg AI, mode: ideas, existing product",
-    skillFile: "pm-brainstorm/SKILL.md",
-    inputText: `Ringg AI — AI voice calling agent.\nMode: ideas (brainstorm new features).\nStage: existing product.\nCore product: automated inbound/outbound calling with 20+ language support, visual flow builder, CRM integrations.`,
-    output: `<p><strong>PM lens</strong> — jobs-to-be-done the product currently leaves unfinished:</p>
-<p>1. <strong>Outbound campaign scheduler</strong> — teams want to run timed bulk campaigns (e.g. payment reminders day 1, 3, 7) without manual triggers. High frequency pain.<br>
-2. <strong>Lead scoring from call signals</strong> — surface intent signals from transcripts (hesitation, pricing questions) directly into CRM.<br>
-3. <strong>Multi-agent parallel dialling</strong> — run 50 calls simultaneously for high-volume collections or appointment confirmations.</p>
-<p><strong>Designer lens</strong> — friction and delight gaps:</p>
-<p>4. <strong>Live call monitoring dashboard</strong> — supervisors want to see in-progress calls, whisper coaching, and sentiment in real time.<br>
-5. <strong>Script A/B testing UI</strong> — compare two call scripts side by side with conversion metrics. Currently requires engineering.</p>
-<p><strong>Engineer lens</strong> — underutilised capabilities:</p>
-<p>6. <strong>Webhook library for 1-click CRM sync</strong> — Salesforce, HubSpot, Zoho. Reduces integration time from days to minutes.<br>
-7. <strong>Call outcome API</strong> — let customers programmatically read dispositions, transcripts, and next steps into their own systems.</p>
-<p><strong>Top 3 by impact/effort:</strong></p>
-<table class="output-table">
-  <thead><tr><th>Idea</th><th>Impact</th><th>Effort</th><th>Verdict</th></tr></thead>
+brainstorm: {
+  name: "pm brainstorm",
+  tagline: "generates ideas from PM, designer, and engineer perspectives — or designs lean experiments to test them. works for existing products and new concepts in early discovery.",
+  io: { in: "product name + mode (ideas or experiments) + stage (existing or new)", out: "ranked idea list or experiment designs with hypothesis and success metrics" },
+  company: "Ringg AI",
+  prompt: "/pm-brainstorm Ringg AI, mode: ideas, existing product",
+  file: "pm-brainstorm/SKILL.md",
+  input: `Ringg AI — AI voice calling agent platform.
+Mode: ideas (brainstorm new features).
+Stage: existing product.
+Core product: automated inbound/outbound calling,
+20+ language support, <400ms latency, visual flow
+builder, CRM integrations, $5.5M Series A.`,
+  output: `
+<p><strong>Problem statement.</strong> Ringg AI has strong core infrastructure (latency, language coverage, no-code builder) but gaps in three areas customers explicitly request: real-time supervisor visibility, post-call analytics depth, and human-AI handoff quality. The core job-to-be-done: "automate routine calling at enterprise scale while maintaining control and insight into agent quality."</p>
+<table class="dt">
+  <thead><tr><th>Lens</th><th>Idea</th><th>Rationale</th><th>Verdict</th></tr></thead>
   <tbody>
-    <tr><td>Webhook CRM library</td><td>High</td><td>Low</td><td><span class="tag quick-win">Quick win</span></td></tr>
-    <tr><td>Live monitoring dashboard</td><td>High</td><td>Medium</td><td><span class="tag quick-win">Quick win</span></td></tr>
-    <tr><td>Campaign scheduler</td><td>High</td><td>High</td><td><span class="tag big-bet">Big bet</span></td></tr>
+    <tr><td>PM</td><td><strong>Agent Copilot Mode</strong> — real-time AI suggestions for human agents during live calls (next-best-action, tone warning, objection handling)</td><td>Unlocks $50M+ TAM in hybrid call centres. Customers want to automate 60% of calls; the other 40% need human + AI assist. Competitors (Sierra) are winning here.</td><td><span class="t t-win">Quick win</span></td></tr>
+    <tr><td>PM</td><td><strong>Vertical-specific compliance templates</strong> — pre-built, regulation-ready call flows for fintech (KYC), insurance, healthcare (appointment reminders + HIPAA)</td><td>Reduces enterprise time-to-value from months to weeks. Buyers want vendor-approved scripts, not blank canvases.</td><td><span class="t t-win">Quick win</span></td></tr>
+    <tr><td>Designer</td><td><strong>Emotion & sentiment in-call dashboard</strong> — real-time mood detection (frustration, confusion, delight) + auto-escalation triggers for supervisors</td><td>Current analytics are post-call only. Enterprises want during-call intervention. High NPS impact.</td><td><span class="t t-win">Quick win</span></td></tr>
+    <tr><td>Designer</td><td><strong>Conversation replay & forensics</strong> — searchable transcript database with intent extraction + failure pattern detection</td><td>Operational job: diagnose failures. Data already exists. Competitors lack this depth. Enables continuous improvement loops.</td><td><span class="t t-bet">Big bet</span></td></tr>
+    <tr><td>Engineer</td><td><strong>Semantic turn detection refinement</strong> — fine-tuned transformer models to reduce interruptions 40%</td><td>Customers cite interruptions as #1 pain. Fine-tuning on real Ringg call data = low cost, high ROI, defensible moat.</td><td><span class="t t-bet">Big bet</span></td></tr>
+    <tr><td>Engineer</td><td><strong>Custom LLM endpoint support</strong> — let enterprises bring their own Llama / proprietary model for air-gapped deployments</td><td>Enterprises with LLM investments want to use them. High unlock for security-conscious buyers who can't send data to OpenAI.</td><td><span class="t t-win">Quick win</span></td></tr>
   </tbody>
-</table>`
-  },
+</table>
+<p><strong>Next step.</strong> Week 1: run 5 interviews with enterprise ops teams. Hypothesis: 60%+ say they have calls too complex for AI alone but need agent assistance. If validated, lock Agent Copilot Mode into Q2 roadmap.</p>`
+},
 
-  assumptions: {
-    name: "assumption mapping",
-    tagline: "surfaces and prioritizes the riskiest assumptions behind any feature or product idea before you build. uses VUVF for existing products, 8 risk categories for new ones.",
-    io: {
-      in: "feature or product idea + stage (existing or new)",
-      out: "full assumption map by category, top 5-7 by impact × evidence, one experiment each"
-    },
-    company: "Emergent",
-    prompt: "/pm-assumption-mapping Emergent, 'build full-stack app from text description', new product",
-    skillFile: "pm-assumption-mapping/SKILL.md",
-    inputText: `Emergent — AI app builder.\nCore bet: non-technical founders can describe an app in plain English and get a deployable full-stack product (web + mobile) with no coding.\n6M+ apps built, 5M+ users, YC-backed.`,
-    output: `<p><strong>Top 5 assumptions by priority</strong> (high impact × low evidence first):</p>
-<table class="output-table">
-  <thead><tr><th>#</th><th>Assumption</th><th>Category</th><th>Impact</th><th>Evidence</th><th>Test</th></tr></thead>
+assumptions: {
+  name: "assumption mapping",
+  tagline: "surfaces and prioritizes the riskiest assumptions behind any feature or product idea before you build. uses VUVF for existing products, 8 risk categories for new ones.",
+  io: { in: "feature or product idea + stage (existing or new)", out: "full assumption map by category, top 5-7 by impact × evidence, one experiment each" },
+  company: "Emergent",
+  prompt: "/pm-assumption-mapping Emergent, 'build full-stack app from text description', new product",
+  file: "pm-assumption-mapping/SKILL.md",
+  input: `Emergent (emergent.sh) — AI app builder.
+Core bet: non-technical founders describe an app in
+plain English and get a deployable full-stack product
+(web + mobile) with no coding required.
+YC-backed. $100M ARR in 8 months. 6M+ apps built.`,
+  output: `
+<p><strong>Top 7 assumptions by priority</strong> (high impact × low evidence = test first):</p>
+<table class="dt">
+  <thead><tr><th>#</th><th>Assumption</th><th>Category</th><th>Impact</th><th>Evidence</th><th>Experiment</th></tr></thead>
   <tbody>
     <tr>
       <td>1</td>
-      <td>Non-technical users can articulate requirements clearly enough for AI to build correctly on first pass</td>
-      <td>Usability</td>
-      <td><span class="tag high">5</span></td>
-      <td><span class="tag low">1</span></td>
-      <td>Recruit 10 non-technical founders — measure % satisfied with first-gen output</td>
+      <td>Generated apps scale reliably in production without data loss or silent failures at real user load</td>
+      <td>Feasibility</td>
+      <td><span class="t t-hi">5</span></td>
+      <td><span class="t t-hi">1</span></td>
+      <td>Load test 50 randomly sampled apps at 1K concurrent users. One published incident (data loss across two accounts) signals systemic risk.</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>AI-generated code meets production quality for customer-facing apps</td>
+      <td>Users accept generic, templated UI as sufficient for 80% of use cases if speed and cost improve 10×</td>
       <td>Value</td>
-      <td><span class="tag high">5</span></td>
-      <td><span class="tag low">2</span></td>
-      <td>Audit 20 deployed apps for security, performance, and error rate</td>
+      <td><span class="t t-hi">5</span></td>
+      <td><span class="t t-mid">2</span></td>
+      <td>Segment 50+ users by use case (internal tools vs consumer apps). Measure design quality as a churn reason vs. not.</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>Users trust deploying code they haven't reviewed to real customers</td>
-      <td>Desirability</td>
-      <td><span class="tag high">4</span></td>
-      <td><span class="tag low">1</span></td>
-      <td>Survey 100 users: did you review the code before going live?</td>
+      <td>Multi-agent orchestration produces meaningfully more reliable code than single-agent competitors (Bolt, Lovable)</td>
+      <td>Value</td>
+      <td><span class="t t-hi">5</span></td>
+      <td><span class="t t-mid">2</span></td>
+      <td>Build 20 identical specs on Emergent + Bolt.new + Lovable. Measure: bugs-per-KLOC, time to production, iteration cycles.</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>We can acquire enough non-technical users at viable CAC</td>
-      <td>Go-to-Market</td>
-      <td><span class="tag high">4</span></td>
-      <td><span class="tag medium">3</span></td>
-      <td>Measure CAC by channel for 90 days</td>
+      <td>Users remain long-term despite credit unpredictability and OpenAI API / Emergent hosting dependencies</td>
+      <td>Viability</td>
+      <td><span class="t t-hi">5</span></td>
+      <td><span class="t t-mid">2</span></td>
+      <td>Track 30/90/180-day cohort retention. Conduct exit interviews. Credit frustration is the #1 cited complaint in reviews.</td>
     </tr>
     <tr>
       <td>5</td>
-      <td>The "idea to app" flow scales beyond simple CRUD apps</td>
-      <td>Feasibility</td>
-      <td><span class="tag high">4</span></td>
-      <td><span class="tag low">2</span></td>
-      <td>Test 15 complex app descriptions — measure % fully functional without manual fixes</td>
+      <td>Credit-based pricing is sustainable at scale — users won't defect to flat-rate or open-source alternatives</td>
+      <td>Viability</td>
+      <td><span class="t t-mid">4</span></td>
+      <td><span class="t t-mid">2</span></td>
+      <td>A/B test: 100 new users on flat-rate $100/mo vs credits for 3 months. Measure conversion, MRR, retention.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Support scales to 10M+ users without eroding brand — currently cited as "unhelpful or absent" in multiple reviews</td>
+      <td>Go-to-Market</td>
+      <td><span class="t t-mid">4</span></td>
+      <td><span class="t t-hi">1</span></td>
+      <td>Track CSAT and resolution time. Set SLA targets (24h first response, 90% resolved in 48h).</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Viral growth sustains as user base shifts from early adopters to mainstream SMBs with lower k-factor</td>
+      <td>Go-to-Market</td>
+      <td><span class="t t-mid">4</span></td>
+      <td><span class="t t-mid">2</span></td>
+      <td>Measure k-factor and viral cycle time by acquisition cohort. Project what 20% k-factor decay per half-year means for growth.</td>
     </tr>
   </tbody>
 </table>
-<p><strong>Leap-of-faith:</strong> Assumption #1. If non-technical users can't describe requirements well enough, the whole product thesis breaks — no amount of better AI fixes a requirements problem.</p>`
-  },
+<p><strong>Leap-of-faith.</strong> Assumption #1. If apps lose data or crash in production, all other metrics are irrelevant — no one will build a real business on an unreliable platform. Test this first: it gates the entire viability thesis.</p>`
+},
 
-  features: {
-    name: "feature prioritization",
-    tagline: "scores and segments a backlog into what to ship, bet on, or cut. groups by theme, applies RICE scoring, and surfaces an explicit do-not-build list.",
-    io: {
-      in: "list of feature requests or backlog items + optional OKRs and team capacity",
-      out: "RICE-scored backlog, quick wins / big bets matrix, top 3 recommendations, do-not-build list"
-    },
-    company: "Portkey",
-    prompt: "/pm-feature-prioritization Portkey LLM gateway, [6 feature requests below]",
-    skillFile: "pm-feature-prioritization/SKILL.md",
-    inputText: `Portkey — enterprise LLM gateway. Routes requests across 1600+ models.\nIncoming feature requests:\n1. Semantic caching v2 (smarter similarity thresholds)\n2. Multi-tenant billing dashboard\n3. Prompt versioning + rollback\n4. Visual prompt editor (GUI)\n5. Slack alert integration\n6. SOC2 compliance report export`,
-    output: `<p><strong>RICE scores:</strong></p>
-<table class="output-table">
-  <thead><tr><th>Feature</th><th>Reach</th><th>Impact</th><th>Conf</th><th>Effort</th><th>Score</th><th>Verdict</th></tr></thead>
+features: {
+  name: "feature prioritization",
+  tagline: "scores and segments a backlog into what to ship, bet on, or cut. groups by theme, applies RICE scoring, and surfaces an explicit do-not-build list.",
+  io: { in: "list of feature requests or backlog items + optional OKRs and team capacity", out: "RICE-scored backlog, quick wins / big bets matrix, top 3 recommendations, do-not-build list" },
+  company: "Portkey",
+  prompt: "/pm-feature-prioritization Portkey LLM gateway, [6 feature requests]",
+  file: "pm-feature-prioritization/SKILL.md",
+  input: `Portkey — enterprise LLM gateway. Routes requests
+across 1,600+ models. API-first dev teams + Fortune
+500 enterprises. Already ships: semantic caching v1,
+prompt playground, multi-tenant workspaces, SOC2.
+Incoming requests:
+1. Semantic caching v2 (smarter similarity thresholds)
+2. Multi-tenant billing dashboard
+3. Prompt versioning + rollback
+4. Visual prompt editor (GUI)
+5. Slack alert integration for anomalies
+6. SOC2 compliance report export`,
+  output: `
+<p><strong>Theme grouping.</strong> Four customer jobs emerge: (1) reduce total cost of ownership → caching v2 + billing dashboard; (2) accelerate prompt iteration → versioning + editor; (3) operational visibility → Slack alerts; (4) enterprise compliance → SOC2 export.</p>
+<p><strong>Kano classification.</strong> Must-Haves: multi-tenant billing, prompt versioning, SOC2 export (sales blockers). Performance: semantic caching v2 (satisfaction scales with hit rate). Delighter: Slack alerts (no LLM gateway does this natively). Deprioritize: visual prompt editor (Portkey already ships Prompt Playground — incremental polish, wrong audience).</p>
+<table class="dt">
+  <thead><tr><th>Feature</th><th>Reach</th><th>Impact</th><th>Conf.</th><th>Effort</th><th>RICE</th><th>Verdict</th></tr></thead>
   <tbody>
-    <tr><td>SOC2 report export</td><td>500 enterprise</td><td>2</td><td>90%</td><td>2w</td><td><strong>45</strong></td><td><span class="tag quick-win">Quick win</span></td></tr>
-    <tr><td>Slack alert integration</td><td>800 teams</td><td>1</td><td>85%</td><td>1w</td><td><strong>34</strong></td><td><span class="tag quick-win">Quick win</span></td></tr>
-    <tr><td>Multi-tenant billing</td><td>200 enterprise</td><td>3</td><td>70%</td><td>8w</td><td><strong>26</strong></td><td><span class="tag big-bet">Big bet</span></td></tr>
-    <tr><td>Prompt versioning</td><td>600 teams</td><td>1</td><td>80%</td><td>3w</td><td><strong>16</strong></td><td>Fill-in</td></tr>
-    <tr><td>Semantic caching v2</td><td>400 teams</td><td>2</td><td>60%</td><td>6w</td><td><strong>8</strong></td><td><span class="tag big-bet">Validate first</span></td></tr>
-    <tr><td>Visual prompt editor</td><td>300 users</td><td>1</td><td>50%</td><td>10w</td><td><strong>1.5</strong></td><td><span class="tag cut">Cut</span></td></tr>
+    <tr><td><strong>Prompt versioning + rollback</strong></td><td>3,500/mo</td><td>2.0</td><td>95%</td><td>1.0 PM</td><td><strong>6,650</strong></td><td><span class="t t-win">Quick win</span></td></tr>
+    <tr><td><strong>Semantic caching v2</strong></td><td>4,000/mo</td><td>2.0</td><td>90%</td><td>2.0 PM</td><td><strong>3,600</strong></td><td><span class="t t-bet">Big bet</span></td></tr>
+    <tr><td><strong>Multi-tenant billing</strong></td><td>2,000/mo</td><td>3.0</td><td>85%</td><td>1.5 PM</td><td><strong>3,400</strong></td><td><span class="t t-bet">Big bet</span></td></tr>
+    <tr><td><strong>SOC2 report export</strong></td><td>500/mo</td><td>3.0</td><td>95%</td><td>0.5 PM</td><td><strong>2,850</strong></td><td><span class="t t-win">Quick win</span></td></tr>
+    <tr><td><strong>Slack alert integration</strong></td><td>1,500/mo</td><td>2.5</td><td>75%</td><td>1.5 PM</td><td><strong>1,875</strong></td><td><span class="t t-cut">Defer</span></td></tr>
+    <tr><td><strong>Visual prompt editor</strong></td><td>3,000/mo</td><td>1.0</td><td>85%</td><td>0.75 PM</td><td><strong>3,400</strong></td><td><span class="t t-cut">Cut</span></td></tr>
   </tbody>
 </table>
-<p><strong>Do not build:</strong> Visual prompt editor. Portkey's users are API-first engineers. A GUI contradicts the product's positioning and would attract the wrong segment. Validated by low confidence score and high effort.</p>
-<p><strong>Top 3 this sprint:</strong> SOC2 export (enterprise compliance unlock), Slack alerts (retention play, 1 week), then scope multi-tenant billing discovery with 5 enterprise accounts before committing 8 weeks.</p>`
-  },
+<p><strong>Top 3 recommendations.</strong> (1) SOC2 export immediately — 0.5 PM, closes Fortune 500 deals at procurement gate. (2) Prompt versioning — highest RICE, likely partially built; add diff view and one-click rollback UX. (3) Multi-tenant billing + caching v2 in parallel — billing ships first (1.5 PM, upsell unlock), then caching v2 alpha with 10 beta customers.</p>
+<p><strong>Do not build.</strong> Visual prompt editor: Portkey's users are API-first engineers — a GUI contradicts the product's positioning and attracts the wrong segment. Instead: build Prompt Performance Tracing — show which prompt versions perform best with A/B results. That closes the actual gap vs. competitors.</p>`
+},
 
-  research: {
-    name: "customer research",
-    tagline: "writes JTBD-grounded interview scripts or synthesizes transcripts into structured insight summaries with pain points, opportunity signals, and action items.",
-    io: {
-      in: "mode (script or summarize) + product area/hypothesis or transcript",
-      out: "interview guide with JTBD questions, or insight summary with pain points and opportunities"
-    },
-    company: "Arintra",
-    prompt: "/pm-customer-research script, hospital billing managers, Arintra medical coding AI",
-    skillFile: "pm-customer-research/SKILL.md",
-    inputText: `Arintra — autonomous medical coding AI.\nConverts patient charts to insurance claims at 96% accuracy.\nTarget: hospital billing managers in ambulatory, emergency, and inpatient settings.\nGoal: understand how billing managers experience the coding process today before pitching AI automation.`,
-    output: `<p><strong>Interview script (45 min) — hospital billing manager</strong></p>
-<p><strong>Warm-up (5 min)</strong><br>
-"Walk me through your role — who do you interact with most on a typical day?"<br>
-"How does a patient chart get from the doctor to your team?"</p>
-<p><strong>Current behavior (15 min)</strong><br>
-"Walk me through the last time a claim was denied. What happened from the moment you realised it?"<br>
-"What does your day look like during peak volume — end of month, audits?"<br>
-"What workarounds or checklists has your team built to catch errors before submission?"</p>
-<p><strong>JTBD deep dive (15 min)</strong><br>
-"What would change for you personally if your denial rate dropped to near zero?"<br>
-"How is your team's performance measured — and what keeps you up at night about hitting those numbers?"<br>
-"If coding errors just disappeared, what would you do with that time?"<br>
-"How do physicians on your floor perceive the billing team — and does that affect how you work?"</p>
-<p><strong>Solution probe — optional (5 min)</strong><br>
-"Arintra claims 96% autonomous coding accuracy. Before trusting that number, what three questions would you need answered?"<br>
-"What would a failed implementation look like for you — what's the nightmare scenario?"</p>
-<p><strong>Wrap-up (5 min)</strong><br>
-"Anything I didn't ask that you think I should know?"<br>
-"Who else on your team or network would give me a completely different perspective on this?"</p>`
-  },
+research: {
+  name: "customer research",
+  tagline: "writes JTBD-grounded interview scripts or synthesizes transcripts into structured insight summaries with pain points, opportunity signals, and action items.",
+  io: { in: "mode (script or summarize) + product area/hypothesis or transcript", out: "interview guide with JTBD questions, or insight summary with pain points and opportunities" },
+  company: "Arintra",
+  prompt: "/pm-customer-research script, hospital billing managers, Arintra medical coding AI",
+  file: "pm-customer-research/SKILL.md",
+  input: `Arintra — autonomous medical coding AI.
+Converts patient charts to insurance claims at 96%
+accuracy. Reduces denials by 43%, undercoding by 11%.
+Target: hospital billing managers and revenue cycle
+directors in ambulatory, ED, and inpatient settings.`,
+  output: `
+<p><strong>Interview script — hospital billing manager (45 min).</strong> Goal: understand the medical coding workflow end-to-end before introducing any solution. Do not mention Arintra until the solution probe section.</p>
 
-  metrics: {
-    name: "product metrics",
-    tagline: "designs a layered metrics dashboard (north star + input + health) or builds an opportunity solution tree to connect a desired outcome to experiments.",
-    io: {
-      in: "mode (dashboard or ost) + product area or desired outcome",
-      out: "north star + input + health metrics system, or full OST with opportunities, solutions, and experiments"
-    },
-    company: "WizCommerce",
-    prompt: "/pm-product-metrics WizCommerce, mode: dashboard",
-    skillFile: "pm-product-metrics/SKILL.md",
-    inputText: `WizCommerce — AI operating system for wholesale B2B commerce.\nProducts: WizShop (buyer portal), WizOrder (sales rep app), WizStudio (AI imagery), WizPay (payments).\nCore AI feature: Order Entry Assistant processes POs from email/PDF with zero manual data entry.\nMode: dashboard (design metrics framework).`,
-    output: `<p><strong>North Star Metric:</strong> GMV processed through AI-assisted orders per month</p>
-<p><em>Why this:</em> It's customer-centric (captures real order flow), predicts long-term retention, and is directly influenced by product investment. Tracks both adoption and business value in one number.</p>
-<p><strong>Input metrics</strong> (levers the team can pull):</p>
-<table class="output-table">
-  <thead><tr><th>Metric</th><th>Definition</th><th>Target direction</th></tr></thead>
+<div class="q-block">
+  <div class="q-phase">Warm-up · 5 min</div>
+  <div class="q-text">"Walk me through your role — who do you interact with most on a typical day, and how does a patient chart get from the doctor to your team?"</div>
+  <div class="q-note">Listen for: team size, handoff points, EHR systems (Epic, Athena, Cerner), how many coders they manage.</div>
+</div>
+<div class="q-block">
+  <div class="q-phase">Current behavior · 15 min</div>
+  <div class="q-text">"Walk me through the last time a claim was denied due to a coding error. What happened from the moment you realised it, step by step?"</div>
+  <div class="q-note">Probe: frequency, root cause (documentation gap, wrong modifier, upcoding flag), hours to remediate, who owns the fix.</div>
+</div>
+<div class="q-block">
+  <div class="q-phase">Current behavior · cont.</div>
+  <div class="q-text">"What workarounds, checklists, or scripts has your team invented to catch coding errors before a claim leaves your system? Show me one."</div>
+  <div class="q-note">Workarounds = unmet needs. These are gold — they reveal where current tools fail.</div>
+</div>
+<div class="q-block">
+  <div class="q-phase">JTBD deep dive · 20 min</div>
+  <div class="q-text">"What would change for you personally — and for your team — if your denial rate dropped to near zero? Paint me the picture."</div>
+  <div class="q-note">Functional job: faster claims, fewer A/R days. Emotional job: less firefighting, more proactive work. Social job: be seen as a revenue driver, not a cost centre.</div>
+</div>
+<div class="q-block">
+  <div class="q-phase">JTBD · cont.</div>
+  <div class="q-text">"How does your CFO or CMO currently perceive your department? What would change in that relationship if your team improved revenue by 5%?"</div>
+  <div class="q-note">Social job probe: billing managers want strategic recognition. This is often more motivating than efficiency.</div>
+</div>
+<div class="q-block">
+  <div class="q-phase">Solution probe · 10 min (optional)</div>
+  <div class="q-text">"Arintra claims 96% autonomous coding accuracy and a 43% reduction in claim denials. Before you'd trust that number, what are the three questions you'd need answered?"</div>
+  <div class="q-note">Listen for hesitation as much as enthusiasm. "What if it misses something?" reveals the liability/accountability concern — your biggest objection to overcome.</div>
+</div>
+<div class="q-block">
+  <div class="q-phase">Wrap-up · 5 min</div>
+  <div class="q-text">"Who else on your team — your lead coder, a billing analyst, your CFO — would give me a completely different perspective on this problem? Can you make an intro?"</div>
+  <div class="q-note">Referrals expand the research network. Also surfaces buy-in barriers: who are the gatekeepers vs. power users?</div>
+</div>`
+},
+
+metrics: {
+  name: "product metrics",
+  tagline: "designs a layered metrics dashboard (north star + input + health) or builds an opportunity solution tree to connect a desired outcome to experiments.",
+  io: { in: "mode (dashboard or ost) + product area or desired outcome", out: "north star + input + health metrics system, or full OST with opportunities, solutions, and experiments" },
+  company: "WizCommerce",
+  prompt: "/pm-product-metrics WizCommerce, mode: dashboard",
+  file: "pm-product-metrics/SKILL.md",
+  input: `WizCommerce — AI operating system for wholesale B2B.
+Products: WizShop (buyer portal), WizOrder (sales rep
+app), WizStudio (AI imagery), WizPay (payments).
+Core AI: Order Entry Assistant processes POs from
+email/PDF with zero manual data entry.
+$8M Series A. 100+ wholesale accounts, 700+ sales reps.`,
+  output: `
+<p><strong>North Star: GMV per sales rep per month.</strong> Baseline ~$120–150K → target $180–200K (33% productivity gain in 12 months). This metric is customer-centric (distributors measure success by revenue per headcount), leading (predicts retention and expansion), and actionable by every team. Alternatives considered and rejected: Monthly Active Reps (adoption without value), AI-Assisted Order % (vanity), NPS (lagging).</p>
+<table class="dt">
+  <thead><tr><th>Input metric</th><th>Definition</th><th>Baseline → Target</th><th>Direction</th></tr></thead>
   <tbody>
-    <tr><td>AI order entry adoption rate</td><td>% of orders initiated via AI vs manual data entry</td><td>↑</td></tr>
-    <tr><td>Avg time-to-order-confirmation</td><td>Minutes from PO upload to confirmed order</td><td>↓</td></tr>
-    <tr><td>Zero-edit order rate</td><td>% of AI-processed orders requiring no manual corrections</td><td>↑</td></tr>
-    <tr><td>Buyer repeat order rate</td><td>% of buyers placing a second order within 30 days</td><td>↑</td></tr>
+    <tr><td><strong>Order entry automation rate</strong></td><td>% of inbound POs processed by AI without manual rework</td><td>40% → 70%</td><td>↑</td></tr>
+    <tr><td><strong>Rep DAU/MAU ratio</strong></td><td>% of reps logging in >4 days/week — measures habit formation</td><td>55% → 80%</td><td>↑</td></tr>
+    <tr><td><strong>Portal repeat order rate</strong></td><td>% of buyers with 2+ orders via WizShop in trailing 90 days</td><td>35% → 55%</td><td>↑</td></tr>
+    <tr><td><strong>Average order value per rep</strong></td><td>Mean order value for rep-initiated or rep-touched orders</td><td>$8K → $10K+</td><td>↑</td></tr>
+    <tr><td><strong>Order-to-cash cycle (days)</strong></td><td>Median days from PO receipt to payment settlement</td><td>18d → 12d</td><td>↓</td></tr>
   </tbody>
 </table>
-<p><strong>Health metrics</strong> (guardrails — must not degrade):</p>
-<table class="output-table">
-  <thead><tr><th>Metric</th><th>HEART dimension</th><th>Alert threshold</th></tr></thead>
+<p><strong>Health metrics (guardrails — must not degrade):</strong></p>
+<table class="dt">
+  <thead><tr><th>Health metric</th><th>HEART dimension</th><th>Alert threshold</th></tr></thead>
   <tbody>
-    <tr><td>Order error rate</td><td>Task Success</td><td>Alert if &gt; 3%</td></tr>
-    <tr><td>ERP sync failure rate</td><td>Task Success</td><td>Alert if &gt; 2% — pause AI features</td></tr>
-    <tr><td>Buyer NPS</td><td>Happiness</td><td>Alert if &lt; 35</td></tr>
-    <tr><td>Monthly active buyers / account</td><td>Retention</td><td>Alert if drops &gt; 10% MoM</td></tr>
+    <tr><td><strong>Data accuracy rate</strong></td><td>Task Success</td><td>Alert if &lt;96%. Critical if &lt;94% — pause AI order features.</td></tr>
+    <tr><td><strong>Account churn rate</strong></td><td>Retention</td><td>Alert if &gt;3%/month (annualised 35%+). Critical if &gt;5%.</td></tr>
+    <tr><td><strong>Net Promoter Score</strong></td><td>Happiness</td><td>Alert if &lt;35 or drops &gt;10 points QoQ.</td></tr>
+    <tr><td><strong>Portal session bounce rate</strong></td><td>Engagement</td><td>Alert if &gt;45%. High bounce damages portal repeat order rate.</td></tr>
+    <tr><td><strong>Rep 30-day activation rate</strong></td><td>Adoption</td><td>Alert if &lt;75%. Critical if &lt;60% — triggers onboarding review.</td></tr>
   </tbody>
-</table>`
-  }
+</table>
+<p><strong>OKR alignment.</strong> Q1: "Ship Order Entry Assistant v2 — hit 60% automation on food/beverage vertical." Q2: "Increase portal repeat order rate to 45% via AI product search improvements." Q3: "Integrate WizPay BNPL — reduce order-to-cash cycle by 25%." Each OKR traces causally to the North Star.</p>`
+}
 
 };
 
-function select(el) {
-  document.querySelectorAll('.skill-item').forEach(i => i.classList.remove('active'));
+// Track current state
+let currentSkill = 'competitor';
+let currentTab = 'skill';
+
+function selectSkill(el) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
-  render(el.dataset.skill);
+  currentSkill = el.dataset.skill;
+  render(currentSkill, 'skill');
 }
 
-function render(key) {
+function switchTab(tab) {
+  currentTab = tab;
+  render(currentSkill, tab);
+}
+
+function render(key, tab) {
   const s = skills[key];
-  const ghBase = "https://github.com/03shraddha/pm-skills/blob/main/";
+  currentTab = tab;
+
+  const tabs = `
+    <div class="content-tabs">
+      <button class="ct ${tab==='skill'?'active':''}" onclick="switchTab('skill')">SKILL.md</button>
+      <button class="ct ${tab==='input'?'active':''}" onclick="switchTab('input')">Input</button>
+      <button class="ct ${tab==='output'?'active':''}" onclick="switchTab('output')">Output</button>
+    </div>
+  `;
+
+  let body = '';
+  if (tab === 'skill') {
+    body = `<div class="md-body">${renderMd(skillmd[key])}</div>`;
+  } else if (tab === 'input') {
+    body = `
+      <div class="example-row">
+        <span class="label">Example</span>
+        <span class="co-tag">${s.company}</span>
+      </div>
+      <div class="label">Input</div>
+      <div class="input-block">${s.input.replace(/\n/g,'<br>')}</div>
+      <p style="font-size:12px;color:var(--muted);margin-top:-16px;">Copy the prompt below and paste it into Claude Code with your own product name.</p>
+    `;
+  } else {
+    body = `
+      <div class="example-row">
+        <span class="label">Example output</span>
+        <span class="co-tag">${s.company}</span>
+      </div>
+      <div class="output">${s.output}</div>
+    `;
+  }
 
   document.getElementById('content').innerHTML = `
-    <div class="content-inner">
-      <h2 class="skill-title">${s.name}</h2>
-      <p class="skill-tagline">${s.tagline}</p>
+    <h1 class="skill-title">${s.name}</h1>
+    <p class="skill-tagline">${s.tagline}</p>
 
-      <div class="section-label">what you give it</div>
-      <div class="io-row"><span class="io-label">in</span><span class="io-value">${s.io.in}</span></div>
-      <div class="io-row"><span class="io-label">out</span><span class="io-value">${s.io.out}</span></div>
-
-      <hr class="divider">
-
-      <div class="example-header">
-        <span class="example-tag">example</span>
-        <span class="company-badge">${s.company}</span>
+    <div class="spec-strip">
+      <div class="spec-row">
+        <span class="spec-key">in</span>
+        <span class="spec-val">${s.io.in}</span>
       </div>
-
-      <div class="input-block">
-        <div class="block-label">input</div>
-        <p>${s.inputText.replace(/\n/g, '<br>')}</p>
+      <div class="spec-row">
+        <span class="spec-key">out</span>
+        <span class="spec-val">${s.io.out}</span>
       </div>
+    </div>
 
-      <div class="output-block">
-        <div class="output-header">output (abbreviated)</div>
-        <div class="output-body">${s.output}</div>
-      </div>
+    ${tabs}
 
-      <div class="actions">
-        <button class="btn-copy" id="copybtn" onclick="copyPrompt('${s.prompt.replace(/'/g, "\\'")}')">copy prompt</button>
-        <a class="link-skill" href="${ghBase}${s.skillFile}" target="_blank">view SKILL.md →</a>
-      </div>
+    <div class="tab-content">${body}</div>
+
+    <div class="actions">
+      <button class="btn-copy" id="copybtn" onclick="copyPrompt(skills[currentSkill].prompt)">copy prompt</button>
+      <a class="lnk" href="${GH}${s.file}" target="_blank">view on github →</a>
     </div>
   `;
 }
 
+// ── Markdown renderer ──────────────────────────────────────────────
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function inlineMd(s) {
+  s = escHtml(s);
+  s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  s = s.replace(/`(.+?)`/g, '<code class="md-code">$1</code>');
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+  return s;
+}
+
+function renderMd(text) {
+  const lines = text.split('\n');
+  let html = '';
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    // Fenced code block
+    if (trimmed.startsWith('```')) {
+      let code = '';
+      i++;
+      while (i < lines.length && !lines[i].trim().startsWith('```')) {
+        code += escHtml(lines[i]) + '\n';
+        i++;
+      }
+      html += `<pre class="md-pre"><code>${code}</code></pre>`;
+      i++;
+      continue;
+    }
+
+    // Table: check if current line starts with |
+    if (trimmed.startsWith('|')) {
+      let rows = [];
+      while (i < lines.length && lines[i].trim().startsWith('|')) {
+        rows.push(lines[i].trim());
+        i++;
+      }
+      // Parse rows: skip separator rows
+      let thead = '';
+      let tbody = '';
+      let headDone = false;
+      for (const row of rows) {
+        // Separator row: |---|---| pattern
+        if (row.replace(/\|/g,'').replace(/-/g,'').replace(/:/g,'').replace(/\s/g,'') === '') {
+          headDone = true;
+          continue;
+        }
+        const cells = row.split('|').slice(1,-1); // remove first and last empty
+        if (!headDone) {
+          thead += '<tr>' + cells.map(c => `<th>${inlineMd(c.trim())}</th>`).join('') + '</tr>';
+        } else {
+          tbody += '<tr>' + cells.map(c => `<td>${inlineMd(c.trim())}</td>`).join('') + '</tr>';
+        }
+      }
+      html += `<table class="md-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table>`;
+      continue;
+    }
+
+    // Headings
+    if (trimmed.startsWith('### ')) {
+      html += `<h3 class="md-h3">${inlineMd(trimmed.slice(4))}</h3>`;
+      i++; continue;
+    }
+    if (trimmed.startsWith('## ')) {
+      html += `<h2 class="md-h2">${inlineMd(trimmed.slice(3))}</h2>`;
+      i++; continue;
+    }
+    if (trimmed.startsWith('# ')) {
+      html += `<h1 class="md-h1">${inlineMd(trimmed.slice(2))}</h1>`;
+      i++; continue;
+    }
+
+    // Horizontal rule
+    if (trimmed === '---' || trimmed === '***' || trimmed === '___') {
+      html += '<hr class="md-hr">';
+      i++; continue;
+    }
+
+    // Blockquote (group consecutive > lines)
+    if (trimmed.startsWith('> ')) {
+      html += '<blockquote class="md-bq">';
+      while (i < lines.length && lines[i].trim().startsWith('> ')) {
+        html += `<p>${inlineMd(lines[i].trim().slice(2))}</p>`;
+        i++;
+      }
+      html += '</blockquote>';
+      continue;
+    }
+
+    // Unordered list
+    if (trimmed.match(/^[-*] /)) {
+      html += '<ul class="md-ul">';
+      while (i < lines.length && lines[i].trim().match(/^[-*] /)) {
+        html += `<li>${inlineMd(lines[i].trim().slice(2))}</li>`;
+        i++;
+      }
+      html += '</ul>';
+      continue;
+    }
+
+    // Ordered list
+    if (trimmed.match(/^\d+\. /)) {
+      html += '<ol class="md-ol">';
+      while (i < lines.length && lines[i].trim().match(/^\d+\. /)) {
+        html += `<li>${inlineMd(lines[i].trim().replace(/^\d+\.\s+/,''))}</li>`;
+        i++;
+      }
+      html += '</ol>';
+      continue;
+    }
+
+    // Blank line
+    if (trimmed === '') {
+      i++; continue;
+    }
+
+    // Paragraph: accumulate until blank line or block element
+    let para = '';
+    while (i < lines.length) {
+      const t = lines[i].trim();
+      if (t === '') break;
+      if (t.startsWith('#') || t.startsWith('|') || t.startsWith('>') ||
+          t.match(/^[-*] /) || t.match(/^\d+\. /) || t.startsWith('```') ||
+          t === '---' || t === '***') break;
+      para += inlineMd(t) + ' ';
+      i++;
+    }
+    if (para.trim()) html += `<p class="md-p">${para.trim()}</p>`;
+  }
+
+  return html;
+}
+
+// ── Copy prompt ────────────────────────────────────────────────────
+
 function copyPrompt(text) {
   navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById('copybtn');
-    btn.textContent = 'copied';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = 'copy prompt';
-      btn.classList.remove('copied');
-    }, 1800);
+    const b = document.getElementById('copybtn');
+    b.textContent = 'copied ✓';
+    b.classList.add('copied');
+    setTimeout(() => { b.textContent = 'copy prompt'; b.classList.remove('copied'); }, 1800);
   });
 }
 
-// Initial render
-render('competitor');
+render('competitor', 'skill');
 </script>
 </body>
 </html>
