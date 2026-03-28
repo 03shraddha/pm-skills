@@ -278,23 +278,23 @@
   }
 
   /* ── Example header ── */
-  .example-row {
+  .example-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: 5px;
+    margin-bottom: 18px;
+    font-size: 12px;
+    color: var(--muted);
   }
 
-  .co-tag {
-    font-size: 11px;
-    font-weight: 500;
+  .example-header a {
     color: var(--text);
-    background: var(--surface);
-    border: 0.5px solid var(--border);
-    border-radius: 4px;
-    padding: 2px 8px;
-    letter-spacing: 0.01em;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--border);
   }
+
+  .example-header a:hover { border-bottom-color: var(--text); }
 
   /* ── Input block ── */
   .input-block {
@@ -977,6 +977,7 @@ competitor: {
   tagline: "maps 5 direct competitors — moats, gaps, pricing, and positioning — then delivers a north star differentiation thesis with battlecard-ready output.",
   io: { in: "product or company name + optional market segment", out: "competitor profiles, moat analysis, differentiation opportunities, battlecard-ready positioning" },
   company: "Sarvam AI",
+  url: "https://www.sarvam.ai",
   prompt: "/competitor-analysis Sarvam AI, Indian sovereign language model market",
   file: "competitor-analysis/SKILL.md",
   input: `Sarvam AI — Indian sovereign language model company.
@@ -1005,6 +1006,7 @@ brainstorm: {
   tagline: "generates ideas from PM, designer, and engineer perspectives — or designs lean experiments to test them. works for existing products and new concepts in early discovery.",
   io: { in: "product name + mode (ideas or experiments) + stage (existing or new)", out: "ranked idea list or experiment designs with hypothesis and success metrics" },
   company: "Ringg AI",
+  url: "https://www.ringg.ai",
   prompt: "/pm-brainstorm Ringg AI, mode: ideas, existing product",
   file: "pm-brainstorm/SKILL.md",
   input: `Ringg AI — AI voice calling agent platform.
@@ -1034,6 +1036,7 @@ assumptions: {
   tagline: "surfaces and prioritizes the riskiest assumptions behind any feature or product idea before you build. uses VUVF for existing products, 8 risk categories for new ones.",
   io: { in: "feature or product idea + stage (existing or new)", out: "full assumption map by category, top 5-7 by impact × evidence, one experiment each" },
   company: "Emergent",
+  url: "https://emergent.sh",
   prompt: "/pm-assumption-mapping Emergent, 'build full-stack app from text description', new product",
   file: "pm-assumption-mapping/SKILL.md",
   input: `Emergent (emergent.sh) — AI app builder.
@@ -1112,6 +1115,7 @@ features: {
   tagline: "scores and segments a backlog into what to ship, bet on, or cut. groups by theme, applies RICE scoring, and surfaces an explicit do-not-build list.",
   io: { in: "list of feature requests or backlog items + optional OKRs and team capacity", out: "RICE-scored backlog, quick wins / big bets matrix, top 3 recommendations, do-not-build list" },
   company: "Portkey",
+  url: "https://portkey.ai",
   prompt: "/pm-feature-prioritization Portkey LLM gateway, [6 feature requests]",
   file: "pm-feature-prioritization/SKILL.md",
   input: `Portkey — enterprise LLM gateway. Routes requests
@@ -1148,6 +1152,7 @@ research: {
   tagline: "writes JTBD-grounded interview scripts or synthesizes transcripts into structured insight summaries with pain points, opportunity signals, and action items.",
   io: { in: "mode (script or summarize) + product area/hypothesis or transcript", out: "interview guide with JTBD questions, or insight summary with pain points and opportunities" },
   company: "Arintra",
+  url: "https://www.arintra.com",
   prompt: "/pm-customer-research script, hospital billing managers, Arintra medical coding AI",
   file: "pm-customer-research/SKILL.md",
   input: `Arintra — autonomous medical coding AI.
@@ -1200,6 +1205,7 @@ metrics: {
   tagline: "designs a layered metrics dashboard (north star + input + health) or builds an opportunity solution tree to connect a desired outcome to experiments.",
   io: { in: "mode (dashboard or ost) + product area or desired outcome", out: "north star + input + health metrics system, or full OST with opportunities, solutions, and experiments" },
   company: "WizCommerce",
+  url: "https://wizcommerce.com",
   prompt: "/pm-product-metrics WizCommerce, mode: dashboard",
   file: "pm-product-metrics/SKILL.md",
   input: `WizCommerce — AI operating system for wholesale B2B.
@@ -1269,20 +1275,12 @@ function render(key, tab) {
     body = `<div class="md-body">${renderMd(skillmd[key])}</div>`;
   } else if (tab === 'input') {
     body = `
-      <div class="example-row">
-        <span class="label">Example</span>
-        <span class="co-tag">${s.company}</span>
-      </div>
-      <div class="label">Input</div>
+      <div class="example-header">example input &nbsp;·&nbsp; <a href="${s.url}" target="_blank">${s.company} ↗</a></div>
       <div class="input-block">${s.input.replace(/\n/g,'<br>')}</div>
-      <p style="font-size:12px;color:var(--muted);margin-top:-16px;">Copy the prompt below and paste it into Claude Code with your own product name.</p>
     `;
   } else {
     body = `
-      <div class="example-row">
-        <span class="label">Example output</span>
-        <span class="co-tag">${s.company}</span>
-      </div>
+      <div class="example-header">real output from running this skill on &nbsp;<a href="${s.url}" target="_blank">${s.company} ↗</a></div>
       <div class="output">${s.output}</div>
     `;
   }
