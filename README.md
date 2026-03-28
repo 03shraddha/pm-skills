@@ -1,5 +1,7 @@
 # pm skills
 
+**[try it live →](https://03shraddha.github.io/pm-skills)**
+
 this is where i keep all the claude code skills i use day-to-day as a product manager.
 
 think of it as my personal pm toolkit, but make it ai. every skill here is something i actually use in my workflow to move faster, think clearer, and skip the repetitive stuff.

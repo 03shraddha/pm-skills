@@ -116,10 +116,13 @@
 
   /* ── Content Tabs ── */
   .content-tabs {
-    display: flex;
-    gap: 0;
+    display: inline-flex;
+    gap: 2px;
     margin-bottom: 28px;
-    border-bottom: 0.5px solid var(--border);
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 3px;
   }
 
   .ct {
@@ -127,17 +130,17 @@
     font-size: 12px;
     font-weight: 500;
     color: var(--muted);
-    padding: 9px 18px 9px 0;
+    padding: 6px 16px;
     background: none;
     border: none;
+    border-radius: 6px;
     cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -0.5px;
-    transition: color 0.1s;
+    transition: color 0.1s, background 0.1s;
+    white-space: nowrap;
   }
 
-  .ct:hover { color: var(--text); }
-  .ct.active { color: var(--text); border-bottom-color: #000; font-weight: 600; }
+  .ct:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+  .ct.active { color: var(--text); background: #fff; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
 
   /* ── Markdown render styles ── */
   .md-body { padding-top: 2px; }
@@ -308,9 +311,9 @@
 
   /* ── Output ── */
   .output { margin-bottom: 32px; }
-  .output p { font-size: 14px; margin-bottom: 10px; color: var(--text); }
+  .output p { font-size: 13px; line-height: 1.65; margin-bottom: 10px; color: var(--text); }
   .output p:last-child { margin-bottom: 0; }
-  .output strong { font-weight: 500; }
+  .output strong { font-weight: 600; }
 
   /* ── Borderless table (for output) ── */
   .dt { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0 20px; }
@@ -327,11 +330,11 @@
   }
 
   .dt td {
-    padding: 0 16px 0 0;
-    height: 48px;
-    vertical-align: middle;
+    padding: 9px 16px 9px 0;
+    vertical-align: top;
     border-bottom: 0.5px solid var(--border);
-    line-height: 1.4;
+    font-size: 13px;
+    line-height: 1.55;
   }
 
   .dt tr:last-child td { border-bottom: none; }
