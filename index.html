@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>product management skills</title>
+<meta name="description" content="6 Claude Code skills for product managers — competitor analysis, brainstorming, assumption mapping, feature prioritization, customer research, and product metrics.">
+<meta property="og:title" content="product management skills">
+<meta property="og:description" content="6 reusable Claude Code skills for PMs. Type /skill-name in Claude Code to run structured PM workflows with built-in frameworks.">
+<meta property="og:url" content="https://03shraddha.github.io/pm-skills">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="product management skills">
+<meta name="twitter:description" content="6 reusable Claude Code skills for PMs — competitor analysis, brainstorming, assumption mapping, feature prioritization, customer research, metrics.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
@@ -50,7 +58,9 @@
     gap: 2px;
     padding: 12px max(32px, calc((100vw - 900px) / 2));
     border-bottom: 0.5px solid var(--border);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     position: sticky;
     top: 45px;
     background: var(--bg);
@@ -71,6 +81,7 @@
     background: none;
     transition: color 0.1s;
     white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .pill:hover { color: var(--text); }
@@ -387,16 +398,73 @@
   .lnk { font-size: 12px; color: var(--muted); text-decoration: none; }
   .lnk:hover { color: var(--text); }
 
+  /* ── Install bar ── */
+  .install-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px max(32px, calc((100vw - 900px) / 2));
+    background: var(--surface);
+    border-bottom: 0.5px solid var(--border);
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .install-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+  .install-step { color: var(--text); }
+  .install-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background: var(--border);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 600;
+    margin-right: 4px;
+    color: var(--text);
+  }
+  .install-sep { color: var(--border); }
+  .install-bar code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: var(--bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    border: 0.5px solid var(--border);
+  }
+
   @media (max-width: 700px) {
     header { padding-left: 16px; padding-right: 16px; }
-    .pill-nav { padding-left: 16px; padding-right: 16px; top: 43px; }
-    .content { padding-left: 16px; padding-right: 16px; }
-    .skill-title { font-size: 22px; }
+    .pill-nav { padding-left: 16px; padding-right: 16px; top: 43px; gap: 4px; }
+    .content { padding-left: 16px; padding-right: 16px; padding-top: 28px; }
+    .skill-title { font-size: 20px; letter-spacing: -0.02em; }
+    .skill-tagline { font-size: 13px; }
     .content-tabs { width: 100%; }
-    .ct { flex: 1; text-align: center; padding: 7px 8px; }
-    .dt { font-size: 13px; }
+    .ct { flex: 1; text-align: center; padding: 7px 6px; font-size: 11px; }
+    .dt { font-size: 12px; }
     .dt td, .dt th { padding-right: 8px; }
     .spec-val { font-size: 12px; }
+    .spec-key { font-size: 10px; }
+    .md-h1 { font-size: 17px; }
+    .md-h2 { font-size: 11px; }
+    .md-p, .md-ul li, .md-ol li, .md-table td { font-size: 13px; }
+    .actions { flex-wrap: wrap; gap: 10px; }
+    .install-bar { gap: 8px; font-size: 11px; }
+  }
+
+  /* Landscape phones */
+  @media (max-height: 500px) and (max-width: 900px) {
+    .pill-nav { position: relative; top: 0; }
+    header { position: relative; }
   }
 </style>
 </head>
@@ -955,6 +1023,15 @@ Recommend which branch to pursue first and why — based on opportunity evidence
   <button class="pill" data-skill="metrics" onclick="selectSkill(this)">Product Metrics</button>
 </nav>
 
+<div class="install-bar">
+  <span class="install-label">install in 30 sec</span>
+  <span class="install-step"><span class="install-num">1</span> download SKILL.md from github</span>
+  <span class="install-sep">→</span>
+  <span class="install-step"><span class="install-num">2</span> drop into <code>~/.claude/skills/</code></span>
+  <span class="install-sep">→</span>
+  <span class="install-step"><span class="install-num">3</span> type <code>/skill-name</code> in claude code</span>
+</div>
+
 <main class="content" id="content"></main>
 
 <script>
@@ -1306,6 +1383,7 @@ function render(key, tab) {
 
     <div class="actions">
       <button class="btn-copy" id="copybtn" onclick="copyPrompt(skills[currentSkill].prompt)">copy prompt</button>
+      <button class="btn-copy" id="skillbtn" onclick="copySkill()">copy SKILL.md</button>
       <a class="lnk" href="${GH}${s.file}" target="_blank">view on github →</a>
     </div>
   `;
@@ -1458,6 +1536,16 @@ function copyPrompt(text) {
     b.textContent = 'copied ✓';
     b.classList.add('copied');
     setTimeout(() => { b.textContent = 'copy prompt'; b.classList.remove('copied'); }, 1800);
+  });
+}
+
+function copySkill() {
+  const text = skillmd[currentSkill];
+  navigator.clipboard.writeText(text).then(() => {
+    const b = document.getElementById('skillbtn');
+    b.textContent = 'copied ✓';
+    b.classList.add('copied');
+    setTimeout(() => { b.textContent = 'copy SKILL.md'; b.classList.remove('copied'); }, 1800);
   });
 }
 
