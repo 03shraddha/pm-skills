@@ -1,42 +1,34 @@
-# PM Skills
+# pm skills
 
-Hey! Welcome to my little corner of the internet where I keep all the Claude Code skills I use day-to-day as a Product Manager.
+this is where i keep all the claude code skills i use day-to-day as a product manager.
 
-Think of this as my personal PM toolkit — but make it AI. Every skill here is something I actually use in my workflow to move faster, think clearer, and do less of the tedious stuff.
+think of it as my personal pm toolkit, but make it ai. every skill here is something i actually use in my workflow to move faster, think clearer, and skip the repetitive stuff.
 
-The idea is simple: I'll keep adding skills as I build them, and you can grab any of them for your own Claude Code setup. No gatekeeping here!
+i'll keep adding skills as i build them, and you can grab any of them for your own claude code setup.
 
 ---
 
-## Skills
+## skills
 
-| Skill | What it does | File |
+| skill | what it does | file |
 |-------|-------------|------|
-| Competitor Analysis | Analyzes competitors with strengths, weaknesses, and differentiation opportunities. Maps the competitive landscape so you know exactly where you stand. | [competitor-analysis.skill](./competitor-analysis.skill) |
+| competitor analysis | analyzes competitors with strengths, weaknesses, and differentiation opportunities. maps the competitive landscape so you know exactly where you stand. | [competitor-analysis.skill](./competitor-analysis.skill) |
 
 ---
 
-## How to use these skills
+## how to use these skills
 
-Super easy — here's all you need to do:
-
-1. **Download the `.skill` file** you want from this repo
-2. **Drop it into your Claude Code skills folder**
-   - On Mac/Linux: `~/.claude/skills/`
-   - On Windows: `C:\Users\<YourName>\.claude\skills\`
-3. **Restart Claude Code** (or reload the window)
-4. **Use it!** Just type `/` in Claude Code and the skill will show up in the list
-
-That's it. Seriously, it's that easy.
+1. download the `.skill` file you want from this repo
+2. drop it into your claude code skills folder
+   - mac/linux: `~/.claude/skills/`
+   - windows: `C:\Users\<YourName>\.claude\skills\`
+3. restart claude code (or reload the window)
+4. type `/` in claude code and the skill will show up in the list
 
 ---
 
-## Why I made this
+## why i made this
 
-I was tired of rewriting the same prompts over and over. Skills let me save my best workflows once and reuse them forever. If you're a PM who uses Claude Code, these might save you a ton of time too.
+i got tired of rewriting the same prompts over and over. skills let me save my best workflows once and reuse them. if you're a pm who uses claude code, these might save you a ton of time too.
 
-I'll keep adding more as I build them — things like user story writing, PRD drafting, sprint retros, stakeholder updates, and more. Stay tuned!
-
----
-
-Feel free to use these, remix them, or hit me up if you want to collaborate on building more PM-focused skills.
+more coming: user story writing, prd drafting, sprint retros, stakeholder updates, and whatever else i end up building.
