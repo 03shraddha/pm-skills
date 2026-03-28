@@ -6,7 +6,7 @@
 
 this is where i keep all the claude code skills i use day-to-day as a product manager. every skill here is something i actually use to move faster, think clearer, and skip the repetitive stuff.
 
-**building for 2026:** products now need to serve two kinds of users — humans through a UI, and AI agents through APIs, MCPs, and CLIs. notion without MCP, figma without API — both are inaccessible to the agent layer. these skills are updated to help PMs think about both surfaces: what does your human user need, and what does the agent need to do the same job?
+**building for 2026:** products now need to serve two kinds of users — humans through a UI, and AI agents through structured interfaces. agents need: a REST or GraphQL API with machine-readable responses (no scraping UIs), an MCP server so orchestrators like Claude or Cursor can call your product as a tool, structured JSON outputs they can parse without regex hacks, atomic endpoints that do one thing (not bundled workflows), and auth that doesn't require a browser session. notion without MCP, figma without a proper API — agents can't use them. these skills are updated to help PMs design for both surfaces.
 
 ---
 
