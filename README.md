@@ -1,12 +1,8 @@
-# pm skills
+# product management skills &nbsp;·&nbsp; [try it live →](https://03shraddha.github.io/pm-skills)
 
-**[try it live →](https://03shraddha.github.io/pm-skills)**
+**skills vs prompts:** a prompt is a one-time instruction you retype every time. a skill is a saved, reusable workflow — you type `/skill-name` in claude code and it runs a structured, multi-step process with built-in pm frameworks, the right output format, and all the context it needs. write it once, use it forever.
 
-this is where i keep all the claude code skills i use day-to-day as a product manager.
-
-think of it as my personal pm toolkit, but make it ai. every skill here is something i actually use in my workflow to move faster, think clearer, and skip the repetitive stuff.
-
-i'll keep adding skills as i build them, and you can grab any of them for your own claude code setup.
+this is where i keep all the claude code skills i use day-to-day as a product manager. every skill here is something i actually use to move faster, think clearer, and skip the repetitive stuff.
 
 ---
 
