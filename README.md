@@ -2,6 +2,8 @@
 
 **skills vs prompts:** a prompt is a one-time instruction you retype every time. a skill is a saved, reusable workflow — you type `/skill-name` in claude code and it runs a structured, multi-step process with built-in pm frameworks, the right output format, and all the context it needs. write it once, use it forever.
 
+**what skills can bundle:** beyond instructions, skills can include python scripts (for deterministic, repeatable tasks), reference files (domain knowledge, schemas, templates), and assets — loaded progressively: metadata is always in context, the skill body loads when triggered, and scripts/references only load when claude actually needs them. no wasted tokens.
+
 this is where i keep all the claude code skills i use day-to-day as a product manager. every skill here is something i actually use to move faster, think clearer, and skip the repetitive stuff.
 
 ---
