@@ -6,6 +6,8 @@
 
 this is where i keep all the claude code skills i use day-to-day as a product manager. every skill here is something i actually use to move faster, think clearer, and skip the repetitive stuff.
 
+**building for 2026:** products now need to serve two kinds of users — humans through a UI, and AI agents through APIs, MCPs, and CLIs. notion without MCP, figma without API — both are inaccessible to the agent layer. these skills are updated to help PMs think about both surfaces: what does your human user need, and what does the agent need to do the same job?
+
 ---
 
 ## skills

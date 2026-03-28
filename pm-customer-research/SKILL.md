@@ -1,13 +1,13 @@
 ---
 name: pm-customer-research
-description: Create structured customer interview scripts or synthesize interview transcripts into actionable PM insights. Interview scripts include JTBD probing questions, warm-up, core exploration, and wrap-up sections. Transcript synthesis extracts jobs-to-be-done, satisfaction signals, pain points, and action items. Use when preparing for customer interviews, analyzing research sessions, or turning raw transcripts into structured discovery output.
+description: Create structured customer interview scripts or synthesize interview transcripts into actionable PM insights. Includes JTBD probing questions and, in 2026, questions to surface how customers are already using AI agents with your product. Transcript synthesis extracts jobs-to-be-done, pain points, and agent use signals. Use when preparing for customer interviews, analyzing research sessions, or turning raw transcripts into structured discovery output.
 ---
 
 # PM Customer Research
 
 > **What it does:** Prepares structured customer interview scripts or synthesizes completed transcripts into PM-ready insight summaries.
 > **Input:** Mode (script or summarize), plus a product area/hypothesis (for scripts) or a transcript (for synthesis).
-> **Output:** A complete interview guide with JTBD questions (script mode), or a structured insight summary with pain points, opportunity signals, and action items (summarize mode).
+> **Output:** A complete interview guide with JTBD questions (script mode), or a structured insight summary with pain points, opportunity signals, agent use signals, and action items (summarize mode).
 
 ---
 
@@ -18,7 +18,7 @@ description: Create structured customer interview scripts or synthesize intervie
 - **Working Backwards** (Amazon) — after synthesis, ask: "Could we write a press release for a product that solves what we just heard?" If yes, there's a real opportunity
 - **Opportunity-Solution Tree** (Torres) — map interview findings directly to opportunity branches on the tree; insights without a home in the tree are noise
 
-In 2026, AI PMs use AI to synthesize patterns across multiple transcripts simultaneously — surfacing the top 5 themes across 20 interviews in minutes. Use this skill for single-interview depth; use AI batch synthesis for cross-interview pattern detection.
+In 2026, "customers" include AI agents. Your human customers are increasingly using AI tools to interact with your product — and the workflows they wish they could automate represent the next frontier of unmet needs. Probing for agent use in interviews reveals what people are trying to offload, what they trust automation to do, and what they still want to control themselves. Use this skill for single-interview depth; use AI batch synthesis for cross-interview pattern detection across 10+ transcripts.
 
 ---
 
@@ -58,6 +58,12 @@ Jobs-to-be-done questions surface the underlying motivation, not the surface req
 
 Probe all three job dimensions: functional (task), emotional (feeling), social (perception).
 
+In 2026, also probe for agent use — these questions reveal what customers are already trying to automate and what programmatic access they wish existed:
+- "Are you using any AI tools or agents as part of this workflow today?"
+- "If an AI agent could handle this task entirely on your behalf, what would it need to do — step by step?"
+- "What would you still want to do yourself, even if an agent could do it?"
+- "Have you ever tried to automate or script any part of this process? What happened?"
+
 ### Solution Probing (10 min — only if validating a specific hypothesis)
 - Describe the concept or show a prototype — do not lead with a demo
 - "Does this solve the problem you described? Why or why not?"
@@ -96,6 +102,16 @@ Analyze the transcript and produce a structured summary:
 - Unmet needs no current solution addresses
 - "If only..." or "I wish..." statements
 - Behaviors that suggest latent demand
+
+### Agent Use Signals
+Surface any mentions of:
+- AI tools or agents they are already using in this workflow (ChatGPT, Claude, Cursor, Zapier, etc.)
+- Tasks they've tried to automate — what worked, what didn't
+- "I wish this could just..." statements — these are requests for agent-native features in disguise
+- Explicit requests for API access, integrations, or scripting capabilities
+- Resistance to automation — what they explicitly want to keep doing themselves, and why
+
+These signals indicate where agent-native features have real demand, and where human oversight is a genuine requirement rather than a gap to close.
 
 ### Working Backwards Check
 - Based on this interview, could you write a press release for a product that solves what was described?

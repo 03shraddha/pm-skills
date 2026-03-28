@@ -1113,7 +1113,7 @@ const skills = {
 
 competitor: {
   name: "competitor analysis",
-  tagline: "maps 5 direct competitors — moats, gaps, pricing, and positioning — then delivers a north star differentiation thesis with battlecard-ready output.",
+  tagline: "maps 5 direct competitors — moats, gaps, pricing, and agent accessibility — then delivers a north star differentiation thesis with battlecard-ready output.",
   io: { in: "product or company name + optional market segment", out: "competitor profiles, moat analysis, differentiation opportunities, battlecard-ready positioning" },
   company: "Sarvam AI",
   url: "https://www.sarvam.ai",
@@ -1124,25 +1124,25 @@ Builds voice + text AI for 11 Indian languages.
 Products: Sarvam APIs (TTS, STT, translation), Indus chat app.
 Target: enterprises building India-first AI products.`,
   output: `
-<p><strong>Market.</strong> Indian sovereign AI — voice + language models for regional markets. India's AI market reached $1.6–22.8B in 2025 with 26.5% CAGR projected through 2034. Enterprises face DPDP compliance pressure and demand for culturally sovereign AI. Key success factors: multimodal coverage across 22 scheduled languages, on-premise deployment options, BFSI and govt sector relationships.</p>
+<p><strong>Market.</strong> Indian sovereign AI — voice + language models for regional markets. India's AI market reached $1.6–22.8B in 2025 with 26.5% CAGR projected through 2034. Enterprises face DPDP compliance pressure and demand for culturally sovereign AI. Key success factors: multimodal coverage across 22 scheduled languages, on-premise deployment options, BFSI and govt sector relationships. In 2026, a new dimension has emerged: AI agents (internal automations, orchestrators, coding assistants) are now first-class API consumers — enterprises ask whether an AI vendor is agent-accessible before they build pipelines on top of it.</p>
 <table class="dt">
-  <thead><tr><th>Company</th><th>Position</th><th>Key moat</th><th>Weakness</th></tr></thead>
+  <thead><tr><th>Company</th><th>Position</th><th>Key moat</th><th>Weakness</th><th>Agent accessibility</th></tr></thead>
   <tbody>
-    <tr><td><strong>Krutrim (Ola)</strong></td><td>Consumer + enterprise</td><td>Ola distribution, infra investment, consumer reach</td><td>No clear enterprise API story; consumer-first brand</td></tr>
-    <tr><td><strong>CoRover.ai</strong></td><td>Govt + BFSI</td><td>Deep govt relationships, BharatGPT positioning</td><td>Narrow use case, weak developer ecosystem</td></tr>
-    <tr><td><strong>Bhashini (NPCI/Govt)</strong></td><td>Infra layer</td><td>State-backed, free to use, mandated adoption</td><td>Not a commercial product; no SLAs, no support</td></tr>
-    <tr><td><strong>Gnani.ai</strong></td><td>Voice AI, enterprise</td><td>BFSI call centre deployments, proven ROI</td><td>Single-modality (voice only), limited language depth</td></tr>
-    <tr><td><strong>OpenAI (India push)</strong></td><td>Global incumbent</td><td>Model quality, developer mindshare, GPT-4o multilingual</td><td>No data residency, no DPDP compliance, high cost per token</td></tr>
+    <tr><td><strong>Krutrim (Ola)</strong></td><td>Consumer + enterprise</td><td>Ola distribution, infra investment, consumer reach</td><td>No clear enterprise API story; consumer-first brand</td><td>Basic REST API; no MCP server, no CLI, no structured output schema</td></tr>
+    <tr><td><strong>CoRover.ai</strong></td><td>Govt + BFSI</td><td>Deep govt relationships, BharatGPT positioning</td><td>Narrow use case, weak developer ecosystem</td><td>Webhook-only; no API docs for programmatic orchestration; not agent-compatible</td></tr>
+    <tr><td><strong>Bhashini (NPCI/Govt)</strong></td><td>Infra layer</td><td>State-backed, free to use, mandated adoption</td><td>Not a commercial product; no SLAs, no support</td><td>Open API but no versioning, no structured outputs, brittle for agent pipelines</td></tr>
+    <tr><td><strong>Gnani.ai</strong></td><td>Voice AI, enterprise</td><td>BFSI call centre deployments, proven ROI</td><td>Single-modality (voice only), limited language depth</td><td>Private enterprise integrations only; no public API or agent tooling</td></tr>
+    <tr><td><strong>OpenAI (India push)</strong></td><td>Global incumbent</td><td>Model quality, developer mindshare, GPT-4o multilingual</td><td>No data residency, no DPDP compliance, high cost per token</td><td>Best-in-class: REST API, function calling, MCP-compatible, structured outputs, CLI</td></tr>
   </tbody>
 </table>
-<p><strong>Differentiation opportunity.</strong> No player credibly owns enterprise voice APIs with DPDP compliance + on-premise deployment. Sarvam is uniquely positioned to claim "sovereign AI infra" before hyperscalers localise. The gap: enterprises in BFSI, healthcare, and e-gov need a vendor who can sign data processing agreements under Indian law — none of the current players can do this at API quality.</p>
-<p><strong>North star thesis.</strong> Position as the only API-first sovereign AI that enterprises can deploy within India's data borders. Not a chatbot company — an AI infrastructure company. Own the "DPDP-compliant LLM API" narrative before AWS Bedrock or Azure localise their India regions.</p>
-<p><strong>12-month threats to monitor.</strong> AWS India region expansion (data residency parity); Google's Gemini regional fine-tunes; Krutrim pivoting to API-first; Bhashini mandating government procurement.</p>`
+<p><strong>Differentiation opportunity.</strong> No Indian player credibly owns enterprise voice APIs with DPDP compliance + on-premise deployment. Sarvam is uniquely positioned to claim "sovereign AI infra" before hyperscalers localise. The gap: enterprises in BFSI, healthcare, and e-gov need a vendor who can sign data processing agreements under Indian law — none of the current Indian players can do this at API quality. A second, compounding gap has opened: agent accessibility. OpenAI is the only competitor with MCP support and structured outputs — but it fails the data residency test. Sarvam can own the intersection no one else covers: DPDP-compliant + agent-native. Publishing an MCP server, a structured-output mode, and a CLI would let coding agents (Cursor, Claude Code) and enterprise orchestration pipelines consume Sarvam's APIs natively — without any bespoke integration work.</p>
+<p><strong>North star thesis.</strong> Position as the only API-first sovereign AI that enterprises and AI agents can deploy within India's data borders. Not a chatbot company — an AI infrastructure company. Own the "DPDP-compliant, agent-accessible LLM API" narrative before AWS Bedrock or Azure localise their India regions.</p>
+<p><strong>12-month threats to monitor.</strong> AWS India region expansion (data residency parity); Google's Gemini regional fine-tunes; Krutrim pivoting to API-first; Bhashini mandating government procurement; any Indian player shipping an MCP server before Sarvam.</p>`
 },
 
 brainstorm: {
   name: "pm brainstorm",
-  tagline: "generates ideas from PM, designer, and engineer perspectives — or designs lean experiments to test them. works for existing products and new concepts in early discovery.",
+  tagline: "generates ideas from PM, designer, engineer, and agent layer perspectives — or designs lean experiments to test them. works for existing products and new concepts in early discovery.",
   io: { in: "product name + mode (ideas or experiments) + stage (existing or new)", out: "ranked idea list or experiment designs with hypothesis and success metrics" },
   company: "Ringg AI",
   url: "https://www.ringg.ai",
@@ -1155,7 +1155,7 @@ Core product: automated inbound/outbound calling,
 20+ language support, <400ms latency, visual flow
 builder, CRM integrations, $5.5M Series A.`,
   output: `
-<p><strong>Problem statement.</strong> Ringg AI has strong core infrastructure (latency, language coverage, no-code builder) but gaps in three areas customers explicitly request: real-time supervisor visibility, post-call analytics depth, and human-AI handoff quality. The core job-to-be-done: "automate routine calling at enterprise scale while maintaining control and insight into agent quality."</p>
+<p><strong>Problem statement.</strong> Ringg AI has strong core infrastructure (latency, language coverage, no-code builder) but gaps in three areas customers explicitly request: real-time supervisor visibility, post-call analytics depth, and human-AI handoff quality. The core job-to-be-done: "automate routine calling at enterprise scale while maintaining control and insight into agent quality." A fourth gap is emerging: enterprise orchestration teams want to trigger and manage Ringg calls programmatically from their own AI pipelines — without logging into a UI.</p>
 <table class="dt">
   <thead><tr><th>Lens</th><th>Idea</th><th>Rationale</th><th>Verdict</th></tr></thead>
   <tbody>
@@ -1165,9 +1165,10 @@ builder, CRM integrations, $5.5M Series A.`,
     <tr><td>Designer</td><td><strong>Conversation replay & forensics</strong> — searchable transcript database with intent extraction + failure pattern detection</td><td>Operational job: diagnose failures. Data already exists. Competitors lack this depth. Enables continuous improvement loops.</td><td><span class="t t-bet">Big bet</span></td></tr>
     <tr><td>Engineer</td><td><strong>Semantic turn detection refinement</strong> — fine-tuned transformer models to reduce interruptions 40%</td><td>Customers cite interruptions as #1 pain. Fine-tuning on real Ringg call data = low cost, high ROI, defensible moat.</td><td><span class="t t-bet">Big bet</span></td></tr>
     <tr><td>Engineer</td><td><strong>Custom LLM endpoint support</strong> — let enterprises bring their own Llama / proprietary model for air-gapped deployments</td><td>Enterprises with LLM investments want to use them. High unlock for security-conscious buyers who can't send data to OpenAI.</td><td><span class="t t-win">Quick win</span></td></tr>
+    <tr><td>Agent layer</td><td><strong>Ringg MCP Server + Orchestrator API</strong> — expose call scheduling, status polling, transcript retrieval, and live call control as MCP tools and typed REST endpoints so orchestrators (Claude, LangChain, n8n) can trigger and manage calls programmatically without a human in the loop</td><td>Enterprise AI pipelines are the fastest-growing buyer segment. A CRM enrichment agent, a collections workflow, or a post-purchase survey automation should be able to call Ringg the same way it calls any other tool — no UI required. Today, Ringg has no MCP server and limited webhook primitives, leaving this segment unserved. Shipping this opens a new distribution channel: AI developers who embed Ringg into their own agents.</td><td><span class="t t-win">Quick win</span></td></tr>
   </tbody>
 </table>
-<p><strong>Next step.</strong> Week 1: run 5 interviews with enterprise ops teams. Hypothesis: 60%+ say they have calls too complex for AI alone but need agent assistance. If validated, lock Agent Copilot Mode into Q2 roadmap.</p>`
+<p><strong>Next step.</strong> Week 1: run 5 interviews with enterprise ops and AI/automation teams. Hypothesis: 60%+ say they have calls too complex for AI alone but need agent assistance; a second cohort is already trying to trigger Ringg via Zapier or custom webhooks as a workaround. If validated, lock Agent Copilot Mode and MCP Server into Q2 roadmap as parallel tracks.</p>`
 },
 
 assumptions: {
@@ -1184,7 +1185,7 @@ plain English and get a deployable full-stack product
 (web + mobile) with no coding required.
 YC-backed. $100M ARR in 8 months. 6M+ apps built.`,
   output: `
-<p><strong>Top 7 assumptions by priority</strong> (high impact × low evidence = test first):</p>
+<p><strong>Top 8 assumptions by priority</strong> (high impact × low evidence = test first):</p>
 <table class="dt">
   <thead><tr><th>#</th><th>Assumption</th><th>Category</th><th>Impact</th><th>Evidence</th><th>Experiment</th></tr></thead>
   <tbody>
@@ -1222,6 +1223,14 @@ YC-backed. $100M ARR in 8 months. 6M+ apps built.`,
     </tr>
     <tr>
       <td>5</td>
+      <td>Emergent apps are themselves accessible to AI agents (via API or structured endpoints), not just human users — and builders expect this by default</td>
+      <td>Feasibility</td>
+      <td><span class="t t-hi">5</span></td>
+      <td><span class="t t-hi">1</span></td>
+      <td>Survey 100 builders: what % expect their generated app to expose an API or MCP tool interface? Audit 50 live apps — how many have a machine-readable endpoint vs. UI-only? If majority want agent-accessible apps and Emergent doesn't generate them, a competitor that does will capture the developer segment.</td>
+    </tr>
+    <tr>
+      <td>6</td>
       <td>Credit-based pricing is sustainable at scale — users won't defect to flat-rate or open-source alternatives</td>
       <td>Viability</td>
       <td><span class="t t-mid">4</span></td>
@@ -1229,7 +1238,7 @@ YC-backed. $100M ARR in 8 months. 6M+ apps built.`,
       <td>A/B test: 100 new users on flat-rate $100/mo vs credits for 3 months. Measure conversion, MRR, retention.</td>
     </tr>
     <tr>
-      <td>6</td>
+      <td>7</td>
       <td>Support scales to 10M+ users without eroding brand — currently cited as "unhelpful or absent" in multiple reviews</td>
       <td>Go-to-Market</td>
       <td><span class="t t-mid">4</span></td>
@@ -1237,7 +1246,7 @@ YC-backed. $100M ARR in 8 months. 6M+ apps built.`,
       <td>Track CSAT and resolution time. Set SLA targets (24h first response, 90% resolved in 48h).</td>
     </tr>
     <tr>
-      <td>7</td>
+      <td>8</td>
       <td>Viral growth sustains as user base shifts from early adopters to mainstream SMBs with lower k-factor</td>
       <td>Go-to-Market</td>
       <td><span class="t t-mid">4</span></td>
@@ -1246,7 +1255,7 @@ YC-backed. $100M ARR in 8 months. 6M+ apps built.`,
     </tr>
   </tbody>
 </table>
-<p><strong>Leap-of-faith.</strong> Assumption #1. If apps lose data or crash in production, all other metrics are irrelevant — no one will build a real business on an unreliable platform. Test this first: it gates the entire viability thesis.</p>`
+<p><strong>Leap-of-faith.</strong> Assumption #1. If apps lose data or crash in production, all other metrics are irrelevant — no one will build a real business on an unreliable platform. Test this first: it gates the entire viability thesis. Assumption #5 is the sleeper risk: as AI agents become primary software consumers in 2026, an app builder that generates UI-only products with no agent-accessible interface will lose the developer segment to a competitor that generates API + UI together by default.</p>`
 },
 
 features: {
@@ -1269,12 +1278,13 @@ Incoming requests:
 5. Slack alert integration for anomalies
 6. SOC2 compliance report export`,
   output: `
-<p><strong>Theme grouping.</strong> Four customer jobs emerge: (1) reduce total cost of ownership → caching v2 + billing dashboard; (2) accelerate prompt iteration → versioning + editor; (3) operational visibility → Slack alerts; (4) enterprise compliance → SOC2 export.</p>
-<p><strong>Kano classification.</strong> Must-Haves: multi-tenant billing, prompt versioning, SOC2 export (sales blockers). Performance: semantic caching v2 (satisfaction scales with hit rate). Delighter: Slack alerts (no LLM gateway does this natively). Deprioritize: visual prompt editor (Portkey already ships Prompt Playground — incremental polish, wrong audience).</p>
+<p><strong>Theme grouping.</strong> Four customer jobs emerge: (1) reduce total cost of ownership → caching v2 + billing dashboard; (2) accelerate prompt iteration → versioning + editor; (3) operational visibility → Slack alerts; (4) enterprise compliance → SOC2 export. A fifth job is implicit in Portkey's core positioning: (5) agent-native gateway management — AI coding agents and orchestrators need to configure routing rules, inspect cost limits, and trigger fallbacks programmatically, not through a dashboard.</p>
+<p><strong>Kano classification.</strong> Must-Haves: multi-tenant billing, prompt versioning, SOC2 export (sales blockers). Performance: semantic caching v2 (satisfaction scales with hit rate). Delighter: Slack alerts (no LLM gateway does this natively). Deprioritize: visual prompt editor (Portkey already ships Prompt Playground — incremental polish, wrong audience). Note: agent-accessibility is not a delighter for Portkey — it is the core value proposition. Portkey exists because developers want to manage LLM infrastructure programmatically. Exposing gateway management itself as MCP tools is a natural extension of that thesis, not a nice-to-have.</p>
 <table class="dt">
   <thead><tr><th>Feature</th><th>Reach</th><th>Impact</th><th>Conf.</th><th>Effort</th><th>RICE</th><th>Verdict</th></tr></thead>
   <tbody>
     <tr><td><strong>Prompt versioning + rollback</strong></td><td>3,500/mo</td><td>2.0</td><td>95%</td><td>1.0 PM</td><td><strong>6,650</strong></td><td><span class="t t-win">Quick win</span></td></tr>
+    <tr><td><strong>Portkey MCP Server</strong> — expose routing rules, cost limits, model fallbacks, and usage queries as MCP tools so AI coding agents (Cursor, Claude Code) can configure and query the LLM gateway directly</td><td>2,500/mo</td><td>3.0</td><td>80%</td><td>1.0 PM</td><td><strong>6,000</strong></td><td><span class="t t-win">Quick win</span></td></tr>
     <tr><td><strong>Semantic caching v2</strong></td><td>4,000/mo</td><td>2.0</td><td>90%</td><td>2.0 PM</td><td><strong>3,600</strong></td><td><span class="t t-bet">Big bet</span></td></tr>
     <tr><td><strong>Multi-tenant billing</strong></td><td>2,000/mo</td><td>3.0</td><td>85%</td><td>1.5 PM</td><td><strong>3,400</strong></td><td><span class="t t-bet">Big bet</span></td></tr>
     <tr><td><strong>SOC2 report export</strong></td><td>500/mo</td><td>3.0</td><td>95%</td><td>0.5 PM</td><td><strong>2,850</strong></td><td><span class="t t-win">Quick win</span></td></tr>
@@ -1282,13 +1292,13 @@ Incoming requests:
     <tr><td><strong>Visual prompt editor</strong></td><td>3,000/mo</td><td>1.0</td><td>85%</td><td>0.75 PM</td><td><strong>3,400</strong></td><td><span class="t t-cut">Cut</span></td></tr>
   </tbody>
 </table>
-<p><strong>Top 3 recommendations.</strong> (1) SOC2 export immediately — 0.5 PM, closes Fortune 500 deals at procurement gate. (2) Prompt versioning — highest RICE, likely partially built; add diff view and one-click rollback UX. (3) Multi-tenant billing + caching v2 in parallel — billing ships first (1.5 PM, upsell unlock), then caching v2 alpha with 10 beta customers.</p>
+<p><strong>Top 3 recommendations.</strong> (1) SOC2 export immediately — 0.5 PM, closes Fortune 500 deals at procurement gate. (2) Prompt versioning — highest RICE, likely partially built; add diff view and one-click rollback UX. (3) Portkey MCP Server — second-highest RICE at 1.0 PM; lets Cursor and Claude Code configure the gateway without leaving the coding environment. This is on-brand for an API-first product and creates a new distribution channel: developers who discover Portkey through their AI coding agent's tool list.</p>
 <p><strong>Do not build.</strong> Visual prompt editor: Portkey's users are API-first engineers — a GUI contradicts the product's positioning and attracts the wrong segment. Instead: build Prompt Performance Tracing — show which prompt versions perform best with A/B results. That closes the actual gap vs. competitors.</p>`
 },
 
 research: {
   name: "customer research",
-  tagline: "writes JTBD-grounded interview scripts or synthesizes transcripts into structured insight summaries with pain points, opportunity signals, and action items.",
+  tagline: "writes JTBD-grounded interview scripts — including agent use probes — or synthesizes transcripts into structured insight summaries with pain points, opportunity signals, and action items.",
   io: { in: "mode (script or summarize) + product area/hypothesis or transcript", out: "interview guide with JTBD questions, or insight summary with pain points and opportunities" },
   company: "Arintra",
   url: "https://www.arintra.com",
@@ -1328,6 +1338,16 @@ directors in ambulatory, ED, and inpatient settings.`,
   <div class="q-note">Social job probe: billing managers want strategic recognition. This is often more motivating than efficiency.</div>
 </div>
 <div class="q-block">
+  <div class="q-phase">JTBD · agent use probe</div>
+  <div class="q-text">"Are you or anyone on your team already using AI tools — copilots, automations, anything that runs without a person clicking through it — anywhere in the billing or coding workflow? Walk me through what it does and where it hands back to a human."</div>
+  <div class="q-note">Maps the current AI frontier in their workflow. Listen for: RPA scripts, payer portal bots, EHR-embedded AI, ChatGPT used ad hoc. This reveals what "autonomous" already means to them and where the trust boundary sits.</div>
+</div>
+<div class="q-block">
+  <div class="q-phase">JTBD · agent use probe · cont.</div>
+  <div class="q-text">"If you imagine an AI agent handling the full coding and claims submission cycle — from chart to payer — which steps would you be comfortable removing your team from entirely, and which ones would you want a human to stay in the loop on, no matter how good the AI gets?"</div>
+  <div class="q-note">Surfaces the accountability and liability boundary — the most critical design constraint for Arintra's autonomous mode. Expect: willingness to automate routine ICD/CPT coding, but strong resistance to removing human review on high-value or audit-flagged claims. This maps directly to where Arintra should position human-in-the-loop overrides vs. full autonomy.</div>
+</div>
+<div class="q-block">
   <div class="q-phase">Solution probe · 10 min (optional)</div>
   <div class="q-text">"Arintra claims 96% autonomous coding accuracy and a 43% reduction in claim denials. Before you'd trust that number, what are the three questions you'd need answered?"</div>
   <div class="q-note">Listen for hesitation as much as enthusiasm. "What if it misses something?" reveals the liability/accountability concern — your biggest objection to overcome.</div>
@@ -1341,7 +1361,7 @@ directors in ambulatory, ED, and inpatient settings.`,
 
 metrics: {
   name: "product metrics",
-  tagline: "designs a layered metrics dashboard (north star + input + health) or builds an opportunity solution tree to connect a desired outcome to experiments.",
+  tagline: "designs a layered metrics dashboard (north star + input + health, including agent usage metrics) or builds an opportunity solution tree to connect a desired outcome to experiments.",
   io: { in: "mode (dashboard or ost) + product area or desired outcome", out: "north star + input + health metrics system, or full OST with opportunities, solutions, and experiments" },
   company: "WizCommerce",
   url: "https://wizcommerce.com",
@@ -1363,6 +1383,8 @@ $8M Series A. 100+ wholesale accounts, 700+ sales reps.`,
     <tr><td><strong>Portal repeat order rate</strong></td><td>% of buyers with 2+ orders via WizShop in trailing 90 days</td><td>35% → 55%</td><td>↑</td></tr>
     <tr><td><strong>Average order value per rep</strong></td><td>Mean order value for rep-initiated or rep-touched orders</td><td>$8K → $10K+</td><td>↑</td></tr>
     <tr><td><strong>Order-to-cash cycle (days)</strong></td><td>Median days from PO receipt to payment settlement</td><td>18d → 12d</td><td>↓</td></tr>
+    <tr><td><strong>API-initiated order volume</strong></td><td>% of orders triggered via API or ERP integration with zero rep or buyer UI interaction — measures how much of the order flow runs agent-to-agent</td><td>5% → 25%</td><td>↑</td></tr>
+    <tr><td><strong>ERP integration sync success rate</strong></td><td>% of ERP/accounting sync events (QuickBooks, NetSuite, SAP) that complete without error or manual reconciliation — prerequisite for unattended agent order processing</td><td>72% → 95%</td><td>↑</td></tr>
   </tbody>
 </table>
 <p><strong>Health metrics (guardrails — must not degrade):</strong></p>
@@ -1374,9 +1396,10 @@ $8M Series A. 100+ wholesale accounts, 700+ sales reps.`,
     <tr><td><strong>Net Promoter Score</strong></td><td>Happiness</td><td>Alert if &lt;35 or drops &gt;10 points QoQ.</td></tr>
     <tr><td><strong>Portal session bounce rate</strong></td><td>Engagement</td><td>Alert if &gt;45%. High bounce damages portal repeat order rate.</td></tr>
     <tr><td><strong>Rep 30-day activation rate</strong></td><td>Adoption</td><td>Alert if &lt;75%. Critical if &lt;60% — triggers onboarding review.</td></tr>
+    <tr><td><strong>API error rate</strong></td><td>Task Success</td><td>Alert if &gt;1% of API calls return 4xx/5xx errors. Critical if &gt;3% — agent-initiated orders and ERP syncs will silently fail above this threshold.</td></tr>
   </tbody>
 </table>
-<p><strong>OKR alignment.</strong> Q1: "Ship Order Entry Assistant v2 — hit 60% automation on food/beverage vertical." Q2: "Increase portal repeat order rate to 45% via AI product search improvements." Q3: "Integrate WizPay BNPL — reduce order-to-cash cycle by 25%." Each OKR traces causally to the North Star.</p>`
+<p><strong>OKR alignment.</strong> Q1: "Ship Order Entry Assistant v2 — hit 60% automation on food/beverage vertical." Q2: "Increase portal repeat order rate to 45% via AI product search improvements." Q3: "Integrate WizPay BNPL — reduce order-to-cash cycle by 25%." Q4: "Launch ERP sync v2 — hit 95% sync success rate and 25% API-initiated order volume, enabling fully unattended agent-to-agent order processing for top 20 accounts." Each OKR traces causally to the North Star. The Q4 OKR reflects WizCommerce's agent layer thesis: as buyer procurement systems and supplier ERP automations become AI-driven, WizCommerce's API reliability becomes a distribution moat — orders that flow without human touch are orders that never churn to a competitor.</p>`
 }
 
 };

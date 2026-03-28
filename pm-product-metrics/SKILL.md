@@ -1,6 +1,6 @@
 ---
 name: pm-product-metrics
-description: Design product metrics dashboards or build Opportunity Solution Trees (OSTs) to structure product discovery. Metrics dashboards define North Star metrics, input metrics, health metrics, and alert thresholds. OSTs map a desired outcome to opportunities, solutions, and experiments. Use when setting up product measurement, preparing for a planning cycle, or structuring how a team approaches a specific outcome.
+description: Design product metrics dashboards or build Opportunity Solution Trees (OSTs) to structure product discovery. Covers both human and agent usage metrics — including API call volume, MCP invocations, and agent-initiated actions. Use when setting up product measurement, preparing for a planning cycle, or structuring how a team approaches a specific outcome.
 ---
 
 # PM Product Metrics
@@ -19,7 +19,7 @@ description: Design product metrics dashboards or build Opportunity Solution Tre
 - **Continuous Discovery Habits** (Torres) — OSTs are living documents updated weekly as customer interviews surface new opportunities
 - **OKR Alignment** — North Star is persistent (changes every 2-5 years); OKRs implement strategy quarterly; both must coexist without conflicting
 
-In 2026, AI PMs use AI agents to continuously monitor whether actions are moving the North Star — replacing manual weekly metric reviews with real-time anomaly detection and automated insight surfacing.
+In 2026, a product's usage splits across human sessions and agent-initiated API calls. Both need metrics. Agent usage often grows faster and operates at different time-of-day patterns — and may require an entirely separate instrumentation layer. AI agents are also increasingly used to monitor whether actions are moving the North Star, replacing manual weekly reviews with real-time anomaly detection.
 
 ---
 
@@ -48,12 +48,20 @@ A strong North Star is:
 
 Include: definition, current baseline (if known), target, and why this metric over alternatives.
 
+In 2026, also ask: **does your North Star capture agent-initiated value, or only human-initiated?** If a significant portion of product value flows through API calls or agent workflows, a human-session-only North Star will undercount real usage. Example: Slack's "messages sent" should include bot and agent messages if those represent real workflow value delivered to customers.
+
 ### Input Metrics (3-5)
 Leading indicators that drive the North Star — the levers teams can pull:
 
 | Metric | Definition | How to Measure | Expected Direction |
 |---|---|---|---|
 | (populate) | | | |
+
+In 2026, include agent-specific input metrics alongside human ones where relevant:
+- **API call volume / MCP invocations per day** — direct signal of agent adoption
+- **Agent-initiated actions as % of total actions** — measures how much of the product is being consumed programmatically
+- **Structured output success rate** — % of API responses consumed by agents without error or retry; low rates signal schema or reliability issues
+- **Time-to-first-agent-action** — activation metric for developer/agent users; analogous to time-to-first-value for human users
 
 ### Health Metrics (3-5)
 Guardrail metrics — things that must not degrade while optimizing for the North Star.
@@ -62,16 +70,22 @@ Apply HEART where relevant: Happiness (NPS, CSAT), Engagement (DAU/MAU), Adoptio
 
 Define alert thresholds for each: "If [metric] drops below [X], investigate before shipping."
 
+For products with significant agent usage, also define agent-specific guardrails:
+- **API error rate** — threshold above which agent workflows break silently
+- **Structured output malformation rate** — % of API responses that agents cannot parse; often invisible without dedicated monitoring
+- **Agent session latency (p95)** — agents have tighter latency tolerances than human users; a slow API is a broken agent workflow
+
 ### Metrics Hierarchy Table
 
-| Metric | Type | Definition | Data Source | Owner | Alert Threshold |
-|---|---|---|---|---|---|
-| (populate for each) | | | | | |
+| Metric | Type | User Type | Definition | Data Source | Owner | Alert Threshold |
+|---|---|---|---|---|---|---|
+| (populate for each) | | Human / Agent / Both | | | | |
 
 ### Dashboard Design Notes
 - Recommended visualization per metric (trend line, funnel, cohort, heatmap)
 - Suggested refresh cadence (real-time, daily, weekly)
 - Key segmentation dimensions (plan tier, cohort, region, user type)
+- **Segment human vs. agent traffic** — viewing them in aggregate hides which surface is growing and which is at risk
 - OKR connection: show how each input metric links to a team OKR and up to the North Star
 
 ---
@@ -89,6 +103,10 @@ State the product outcome the team owns — an impact, not an output:
 Each opportunity is an unmet customer need, pain point, or desire surfaced through research. Write from the customer's perspective:
 - "Users don't know they're missing features that would help them"
 - "Users lose their workflow context when switching between tasks"
+
+In 2026, also consider agent users as a source of opportunities:
+- "Developer teams can't automate this workflow because there's no API equivalent of the UI action"
+- "Agents attempting to use the product fail silently — there's no structured error output"
 
 Rate each opportunity:
 - **Evidence strength** (1-5): how many interviews / data points support this?
