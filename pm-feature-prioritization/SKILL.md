@@ -5,51 +5,86 @@ description: Analyze and prioritize feature requests and product backlogs. Group
 
 # PM Feature Prioritization
 
-## Purpose
+> **What it does:** Turns a messy list of feature requests or backlog items into a scored, defensible prioritization recommendation.
+> **Input:** A list of feature requests or backlog items, plus optional strategic goals/OKRs and team capacity.
+> **Output:** Themed backlog with RICE scores, Quick Wins / Big Bets segmentation, top 3 build recommendations, and an explicit "what not to build" list.
 
-Turn a messy list of feature requests or backlog items into a clear, defensible prioritization decision. Moves beyond gut feel by applying structured scoring and strategic framing.
+---
+
+## Frameworks Used
+
+- **RICE Scoring** (Intercom) — Reach x Impact x Confidence / Effort: the standard for quantitative, defensible prioritization
+- **ICE Scoring** (Sean Ellis) — faster alternative for rapid triage of many small items when precision is less critical
+- **Kano Model** (Noriaki Kano) — categorize features as Must-Haves (ship now), Performance (improve over time), or Delighters (differentiation); what delights today becomes table stakes tomorrow
+- **Shape Up** (Basecamp) — treat prioritization as a betting decision with a fixed appetite, not a backlog to clear
+- **Jobs-to-be-Done** — group requests by the underlying customer job, not the surface feature request
+
+In 2026, AI PMs use AI to pre-cluster and pre-score feature requests automatically, then review and debate the output — shifting the PM's role from data entry to strategic judgment.
+
+---
 
 ## Input
 
 $ARGUMENTS should provide:
 - A list of feature requests or backlog items (paste directly or describe them)
 - Optional: strategic goals or OKRs to align against
-- Optional: team size / capacity constraints
+- Optional: team size or capacity constraints
+
+---
 
 ## Analysis Steps
 
 ### 1. Theme Grouping
-Cluster requests into 3-6 themes. Name each theme by the customer need it addresses, not the feature ("Faster onboarding" not "Onboarding redesign").
+Cluster all requests into 3-6 themes using JTBD framing. Name each theme by the customer job it addresses, not the feature:
+- "Faster onboarding" not "Onboarding redesign"
+- "Reduce churn from power users" not "Advanced features"
 
-### 2. Scoring Each Item
-Score every feature on four dimensions (1-5 scale):
+Flag requests that don't map to any strategic goal — these are candidates to cut.
+
+### 2. Kano Classification
+Before scoring, classify each item:
+- **Must-Have** — customers are angry if absent; ship in next sprint
+- **Performance** — satisfaction scales with quality; invest proportionally
+- **Delighter** — unexpected, creates competitive differentiation; these are your bets
+
+Must-Haves have no upside from over-engineering. Delighters are where you win.
+
+### 3. RICE Scoring
+Score every feature on four dimensions (1-5 or estimated numbers):
 
 | Dimension | What to assess |
 |---|---|
-| **Strategic Alignment** | How directly does this advance current OKRs or strategic goals? |
-| **Customer Impact** | How many users are affected? How much does it improve their experience? |
-| **Effort** | How much engineering + design time is required? (5 = lowest effort) |
-| **Risk** | Technical, legal, or dependency risk. (5 = lowest risk) |
+| **Reach** | How many users affected per month? |
+| **Impact** | How much does this move the needle? (0.25 / 0.5 / 1 / 2 / 3) |
+| **Confidence** | How certain are the estimates? (low = 50%, medium = 80%, high = 100%) |
+| **Effort** | Person-months to ship (lower = better) |
 
-Priority Score = (Strategic Alignment + Customer Impact + Effort + Risk) / 4
+**RICE Score = (Reach x Impact x Confidence) / Effort**
 
-### 3. Segmentation
-Classify each item:
-- **Quick Wins** — High impact, low effort (do now)
-- **Big Bets** — High impact, high effort (plan carefully, needs phasing)
-- **Fill-ins** — Low impact, low effort (do when capacity allows)
-- **Deprioritize** — Low impact, high effort (cut or defer)
+Use ICE (Impact x Confidence x Ease, all 1-10) for quick triage of small items where RICE would be overkill.
 
-### 4. Surfacing Risks
-Flag any items with:
-- High customer demand but low strategic alignment (misaligned asks)
-- High effort with unvalidated assumptions (build trap risk)
-- Dependencies that block multiple other items (unlock value if done first)
+### 4. Segmentation Matrix
+Classify using impact vs. effort:
+- **Quick Wins** — high impact, low effort: ship now
+- **Big Bets** — high impact, high effort: plan carefully, consider phasing
+- **Fill-ins** — low impact, low effort: ship when there's slack capacity
+- **Deprioritize** — low impact, high effort: cut or defer indefinitely
+
+Apply Shape Up thinking to Big Bets: set a fixed appetite (e.g., 6 weeks max) and scope the solution to fit — don't let it expand.
+
+### 5. Risk Flags
+Surface any items with:
+- High demand but low strategic alignment (stakeholder pressure vs. actual value)
+- High effort with unvalidated assumptions (build trap risk — needs discovery first)
+- Dependencies that unlock multiple other items (do these first)
+
+---
 
 ## Output Format
 
-1. Theme summary — grouped requests with request count per theme
-2. Prioritized backlog — scored table sorted by Priority Score
-3. Segmentation matrix — Quick Wins / Big Bets / Fill-ins / Deprioritize
-4. Top 3 recommendations — what to build next with rationale
-5. What to explicitly NOT build and why (important for stakeholder alignment)
+1. Theme summary with request count per theme
+2. Kano classification for all items
+3. Prioritized backlog sorted by RICE score (table format)
+4. Segmentation matrix: Quick Wins / Big Bets / Fill-ins / Deprioritize
+5. Top 3 build recommendations with rationale
+6. Explicit "do not build" list with reasons — critical for stakeholder alignment

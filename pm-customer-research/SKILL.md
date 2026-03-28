@@ -5,77 +5,104 @@ description: Create structured customer interview scripts or synthesize intervie
 
 # PM Customer Research
 
-## Purpose
+> **What it does:** Prepares structured customer interview scripts or synthesizes completed transcripts into PM-ready insight summaries.
+> **Input:** Mode (script or summarize), plus a product area/hypothesis (for scripts) or a transcript (for synthesis).
+> **Output:** A complete interview guide with JTBD questions (script mode), or a structured insight summary with pain points, opportunity signals, and action items (summarize mode).
 
-Either prepare for a customer interview with a structured script, or synthesize a completed interview transcript into a PM-ready insight summary.
+---
+
+## Frameworks Used
+
+- **Jobs-to-be-Done** (Christensen / Competing Against Luck) — probe for functional, emotional, and social job dimensions; the best interviews reveal why, not just what
+- **Continuous Discovery Habits** (Teresa Torres) — weekly 30-minute interviews with 2-3 customers is sustainable; treat every interview as opportunity-finding, not solution validation
+- **Working Backwards** (Amazon) — after synthesis, ask: "Could we write a press release for a product that solves what we just heard?" If yes, there's a real opportunity
+- **Opportunity-Solution Tree** (Torres) — map interview findings directly to opportunity branches on the tree; insights without a home in the tree are noise
+
+In 2026, AI PMs use AI to synthesize patterns across multiple transcripts simultaneously — surfacing the top 5 themes across 20 interviews in minutes. Use this skill for single-interview depth; use AI batch synthesis for cross-interview pattern detection.
+
+---
 
 ## Input
 
 $ARGUMENTS should specify:
 - **Mode**: script (create an interview guide) or summarize (synthesize a transcript)
-- For script mode: the product area, hypothesis, or feature to explore
-- For summarize mode: paste the transcript or describe what was discussed
+- For script mode: the product area, hypothesis, or specific assumption to explore
+- For summarize mode: paste the transcript or describe the key topics covered
 
 If mode is unclear, infer from whether a transcript is provided.
 
-## Interview Script Mode
+---
+
+## Script Mode
 
 Create a structured 45-60 minute interview guide:
 
 ### Warm-up (5 min)
-- Role, context, and background questions
-- Establish rapport; avoid leading with the product
+- Role, context, and day-to-day background
+- "Walk me through a typical [relevant work day / task]"
+- Goal: establish rapport; do not mention the product or solution yet
 
 ### Current Behavior Exploration (15 min)
-- "Walk me through the last time you [relevant task]..."
-- "What does your current process look like?"
-- "What tools or workarounds are you using?"
-- Probe: frequency, frustration level, workarounds, triggers
+- "Walk me through the last time you had to [relevant task]..."
+- "What does your current process look like from start to finish?"
+- "What tools, workarounds, or hacks are you using?"
+- Probe: frequency, frustration level, cost of the workaround, what triggers the task
 
 ### JTBD Deep Dive (20 min)
-Jobs-to-be-done questions surface the underlying motivation:
-- "What were you trying to accomplish when you [did X]?"
-- "When [situation], you want to [motivation], so you [expected outcome]?"
-- "What would make this easier? What would make it perfect?"
+Jobs-to-be-done questions surface the underlying motivation, not the surface request:
+- "What were you ultimately trying to accomplish when you [did X]?"
+- "How did it make you feel when [pain point] happened?"
+- "How do others on your team / your manager perceive this process?"
 - "If this problem disappeared tomorrow, what would change for you?"
+- "What would the perfect version of this look like?"
 
-### Solution Probing (10 min — optional, use only if hypothesis is pre-formed)
-- Show a concept or describe an approach
+Probe all three job dimensions: functional (task), emotional (feeling), social (perception).
+
+### Solution Probing (10 min — only if validating a specific hypothesis)
+- Describe the concept or show a prototype — do not lead with a demo
 - "Does this solve the problem you described? Why or why not?"
-- "What's missing? What would you change?"
-- Avoid leading questions; listen for hesitation as much as enthusiasm
+- "What's missing? What would you remove?"
+- Listen for hesitation as much as enthusiasm — both are signal
 
 ### Wrap-up (5 min)
 - "Is there anything I didn't ask that you think I should know?"
-- "Who else deals with this problem on your team?"
-- Ask for referrals to other participants
+- "Who else on your team or network deals with this problem?"
+- Ask for referrals to 2-3 other potential participants
 
-## Transcript Synthesis Mode
+---
+
+## Summarize Mode
 
 Analyze the transcript and produce a structured summary:
 
 ### Participant Snapshot
-- Role, company type, context, how they currently solve the problem
+- Role, company type, team size, how they currently solve the problem
 
 ### Jobs-to-be-Done
-- Primary job: what they were fundamentally trying to accomplish
-- Secondary jobs: adjacent tasks that came up
-- Emotional jobs: how they want to feel (in control, confident, fast)
+- **Primary job**: what they were fundamentally trying to accomplish
+- **Emotional job**: how they want to feel while doing it
+- **Social job**: how they want to be perceived by others
 
 ### Satisfaction Signals
-- What's working well in their current solution
-- Moments of delight or surprise in the conversation
+- What is working well in their current approach
+- Moments of delight or surprise mentioned in the session
 
 ### Pain Points and Friction
-- Specific frustrations quoted directly from the transcript
-- Workarounds they've invented (strong signal of unmet need)
-- Frequency and severity of each pain point
+- Specific frustrations, quoted directly where possible
+- Workarounds they have invented — strong signal of unmet need
+- Frequency and severity rating for each pain point (1-5)
 
 ### Opportunity Signals
-- Unmet needs that no current solution addresses
-- "If only..." statements from the participant
+- Unmet needs no current solution addresses
+- "If only..." or "I wish..." statements
+- Behaviors that suggest latent demand
+
+### Working Backwards Check
+- Based on this interview, could you write a press release for a product that solves what was described?
+- If yes: what is the headline and the core customer benefit?
 
 ### Action Items
-- Features or bets to explore based on this session
-- Follow-up questions for the next interview
 - Hypotheses confirmed, challenged, or newly surfaced
+- Features or product directions to explore
+- Follow-up questions for the next interview
+- Suggested additions to the Opportunity Solution Tree
